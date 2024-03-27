@@ -4,6 +4,7 @@ use App\Http\Controllers\CoaController;
 use App\Http\Controllers\ContohformController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,10 +68,13 @@ Route::get('contohform/destroy/{id}', [App\Http\Controllers\ContohformController
 Route::resource('contohform', App\Http\Controllers\ContohformController::class)->middleware(['auth']);
 
 // route ke master data pelanggan
-// Route::get('/pelanggan', [PelangganController::class, 'index']);
-// route::get('/pelanggan', PelangganController@index);
 Route::get('pelanggan', [PelangganController::class, 'index']);
 Route::get('/pelanggan/destroy/{id}', [PelangganController::class,'destroy'])->middleware(['auth']);
 Route::resource('/pelanggan', PelangganController::class)->middleware(['auth']);
+
+// route ke master data produk
+Route::get('produk', [ProdukController::class, 'index']);
+Route::get('/produk/destroy/{id}', [ProdukController::class,'destroy'])->middleware(['auth']);
+Route::resource('/produk', ProdukController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';

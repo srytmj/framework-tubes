@@ -17,17 +17,17 @@ class Coa extends Model
         'kode_akun',
         'nama_akun',
         'header_akun',
-        'id_perusahaan',
+        'distributor_kode',
     ];
 
-    // untuk melihat data coa dan nama perusahaan
-    public static function getCoaDetailPerusahaan()
+    // untuk melihat data coa dan nama distributor
+    public static function getCoaDetailDistributor()
     {
-        // query kode perusahaan
-        $sql = "SELECT a.*,b.nama_perusahaan
+        // query kode distributor
+        $sql = "SELECT a.*,b.distributor_nama
                 FROM coa a
-                JOIN perusahaan b
-                ON (a.id_perusahaan=b.id)";
+                JOIN distributor b
+                ON (a.distributor_kode=b.id)";
         $coa = DB::select($sql);
 
         return $coa;

@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 return new class extends Migration
 {
@@ -20,6 +22,16 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@mail.com',
+            'email_verified_at' => Carbon::now(),
+            'password' => Hash::make('12341234'),
+            'remember_token' => \Illuminate\Support\Str::random(10),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 
     /**

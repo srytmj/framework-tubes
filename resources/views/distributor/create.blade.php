@@ -69,41 +69,29 @@
                 <!-- Akhir Display Error -->
 
                 <!-- Awal Dari Input Form -->
-                <form action="{{ route('produk.store') }}" method="post">
+                <form action="{{ route('distributor.store') }}" method="post">
                     @csrf
                     <fieldset disabled>
-                      <div class="mb-3">
-                          <label for="produk_kode_label">Kode Produk</label>
-                          <input class="form-control form-control-solid" id="produk_kode_tampil" name="produk_kode_tampil" type="text" placeholder="Contoh: PD-001" value="{{$produk_kode}}" readonly>
-                      </div>
+                        <div class="mb-3"><label for="kodedistributorlabel">Kode Distributor</label>
+                        <input class="form-control form-control-solid" id="distributor_kode_tampil" name="distributor_kode_tampil" type="text" placeholder="Contoh: DR-001" value="{{$distributor_kode}}" readonly></div>
                     </fieldset>
-                    <input type="hidden" id="produk_kode" name="produk_kode" value="{{$produk_kode}}">
-                    
-                    <div class="mb-3">
-                        <label for="produk_nama_label">Nama Produk</label>
-                        <input class="form-control form-control-solid" id="produk_nama" name="produk_nama" type="text" placeholder="Contoh: Es Teh" value="{{old('produk_nama')}}">
+                    <input type="hidden" id="distributor_kode" name="distributor_kode" value="{{$distributor_kode}}">
+
+                    <div class="mb-3"><label for="namadistributorlabel">Nama Distributor</label>
+                    <input class="form-control form-control-solid" id="distributor_nama" name="distributor_nama" type="text" placeholder="Contoh: Toko Mukena Sejuk Menenangkan" value="{{old('distributor_nama')}}">
                     </div>
                     
-                    <div class="mb-3">
-                        <label for="produk_jenis_label">Jenis Produk</label>
-                        <select class="form-control form-control-solid" id="produk_jenis" name="produk_jenis">
-                            <option value="makanan" {{ old('produk_jenis') == 'makanan' ? 'selected' : '' }}>Makanan</option>
-                            <option value="minuman" {{ old('produk_jenis') == 'minuman' ? 'selected' : '' }}>Minuman</option>
-                        </select>
+        
+                    <div class="mb-0"><label for="alamatdistributorlabel">Alamat Distributor</label>
+                        <textarea class="form-control form-control-solid" id="alamat_distributor" name="alamat_distributor" rows="3" placeholder="Cth: Jl Pelajar Pejuan 45">{{old('alamat_distributor')}}</textarea>
                     </div>
-                    
-                    <div class="mb-3">
-                        <label for="produk_harga_label">Harga Produk</label>
-                        <input class="form-control form-control-solid" id="produk_harga" name="produk_harga" type="text" placeholder="Contoh: 15000" value="{{old('produk_harga')}}">
-                    </div>
-                    
                     <br>
                     <!-- untuk tombol simpan -->
                     
                     <input class="col-sm-1 btn btn-success btn-sm" type="submit" value="Simpan">
 
                     <!-- untuk tombol batal simpan -->
-                    <a class="col-sm-1 btn btn-dark  btn-sm" href="{{ url('/produk') }}" role="button">Batal</a>
+                    <a class="col-sm-1 btn btn-dark  btn-sm" href="{{ url('/distributor') }}" role="button">Batal</a>
                     
                 </form>
                 <!-- Akhir Dari Input Form -->

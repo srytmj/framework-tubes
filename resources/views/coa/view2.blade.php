@@ -112,7 +112,7 @@
                 // console.log(url4);
 
                 // console.log(id);
-                // var url = "{{url('perusahaan/destroy/"+id+"')}}";
+                // var url = "{{url('distributor/destroy/"+id+"')}}";
                 
                 // url = JSON.parse(rul.replace(/"/g,'"'));
                 tomboldelete.setAttribute("href", url4); //akan meload kontroller delete
@@ -162,14 +162,14 @@
             <input type="hidden" id="idcoahidden" name="idcoahidden" value="">
             <input type="hidden" id="tipeproses" name="tipeproses" value="">
                 <div class="mb-3 row">
-                    <label for="nomerlabel" class="col-sm-4 col-form-label">Perusahaan</label>
+                    <label for="nomerlabel" class="col-sm-4 col-form-label">Distributor</label>
                         <div class="col-sm-8">
-                            <select class="form-control" aria-label="Default select example" id="id_perusahaan" name="id_perusahaan">
-                                @foreach ($perusahaan as $p)
-                                    <option value="{{$p->id}}">{{$p->nama_perusahaan}}</option>
+                            <select class="form-control" aria-label="Default select example" id="distributor_kode" name="distributor_kode">
+                                @foreach ($distributor as $p)
+                                    <option value="{{$p->id}}">{{$p->distributor_nama}}</option>
                                 @endforeach
                             </select>
-                            <div class="invalid-feedback errorid_perusahaan"></div>
+                            <div class="invalid-feedback errordistributor_kode"></div>
                         </div>    
                 </div>
 
@@ -231,7 +231,7 @@
                     'kode_akun': $('.kode_akun').val(),
                     'header_akun': $('.header_akun').val(),
                     'nama_akun': $('.nama_akun').val(),
-                    'id_perusahaan': $('.id_perusahaan').val(),
+                    'distributor_kode': $('.distributor_kode').val(),
                 }  
 
                 $.ajaxSetup({
@@ -277,12 +277,12 @@
                                 $('.errorheader_akun').html();
                             }
 
-                            if(response.errors.id_perusahaan){
-                                $('#id_perusahaan').removeClass('is-valid').addClass('is-invalid');
-                                $('.errorid_perusahaan').html(response.errors.id_perusahaan);
+                            if(response.errors.distributor_kode){
+                                $('#distributor_kode').removeClass('is-valid').addClass('is-invalid');
+                                $('.errordistributor_kode').html(response.errors.distributor_kode);
                             }else{
-                                $('#id_perusahaan').removeClass('is-invalid').addClass('is-valid');
-                                $('.errorid_perusahaan').html();
+                                $('#distributor_kode').removeClass('is-invalid').addClass('is-valid');
+                                $('.errordistributor_kode').html();
                             }
 
                         } else {
@@ -346,7 +346,7 @@
                     $('#kode_akun').val(response.coa.kode_akun);
                     $('#header_akun').val(response.coa.header_akun);
                     $('#nama_akun').val(response.coa.nama_akun);
-                    $('#id_perusahaan').val(response.coa.id_perusahaan);
+                    $('#distributor_kode').val(response.coa.distributor_kode);
                     $('#idcoahidden').val(id)
 
                     // pastikan form is-invalid dikembalikan ke valid
@@ -356,8 +356,8 @@
                     $('.errornama_akun').html();
                     $('#header_akun').removeClass('is-invalid').addClass('is-valid');;
                     $('.errorheader_akun').html();
-                    $('#id_perusahaan').removeClass('is-invalid').addClass('is-valid');;
-                    $('.errorid_perusahaan').html();
+                    $('#distributor_kode').removeClass('is-invalid').addClass('is-valid');;
+                    $('.errordistributor_kode').html();
                 }
             }
         });
@@ -437,12 +437,12 @@
                                                 $('.errorheader_akun').html();
                                             }
 
-                                            if(response.errors.id_perusahaan){
-                                                $('#id_perusahaan').removeClass('is-valid').addClass('is-invalid');
-                                                $('.errorid_perusahaan').html(response.errors.id_perusahaan);
+                                            if(response.errors.distributor_kode){
+                                                $('#distributor_kode').removeClass('is-valid').addClass('is-invalid');
+                                                $('.errordistributor_kode').html(response.errors.distributor_kode);
                                             }else{
-                                                $('#id_perusahaan').removeClass('is-invalid').addClass('is-valid');;
-                                                $('.errorid_perusahaan').html();
+                                                $('#distributor_kode').removeClass('is-invalid').addClass('is-valid');;
+                                                $('.errordistributor_kode').html();
                                             }
 
                                         }

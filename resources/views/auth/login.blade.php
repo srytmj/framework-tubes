@@ -38,7 +38,7 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
-            <x-secondary-button class="ms-3">
+            <x-secondary-button class="ms-3" href="/register">
                 {{ __('Register') }}
             </x-secondary-button>
 

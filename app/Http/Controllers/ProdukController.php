@@ -24,7 +24,7 @@ class ProdukController extends Controller
      */
     public function create()
     {     
-        return view('produk/create',['kode_produk' => Produk::getProdukId()]);
+        return view('produk/create',['produk_kode' => Produk::getProdukId()]);
     }
 
     /**
@@ -37,10 +37,10 @@ class ProdukController extends Controller
     {
         //digunakan untuk validasi kemudian kalau ok tidak ada masalah baru disimpan ke db
         $validated = $request->validate([
-            'kode_produk' => 'required',
-            'nama_produk' => 'required',
-            'jenis_produk' => 'required',
-            'harga_produk' => 'required',
+            'produk_kode' => 'required',
+            'produk_nama' => 'required',
+            'produk_jenis' => 'required',
+            'produk_harga' => 'required',
         ]);
 
         // masukkan ke db
@@ -81,10 +81,10 @@ class ProdukController extends Controller
     {
         //digunakan untuk validasi kemudian kalau ok tidak ada masalah baru disimpan ke db
         $validated = $request->validate([
-            'kode_produk' => 'required',
-            'nama_produk' => 'required',
-            'jenis_produk' => 'required',
-            'harga_produk' => 'required',
+            'produk_kode' => 'required',
+            'produk_nama' => 'required',
+            'produk_jenis' => 'required',
+            'produk_harga' => 'required',
         ]);    
 
         $produk->update($validated);
@@ -99,7 +99,7 @@ class ProdukController extends Controller
      * @param  \App\Models\Produk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produk $produk)
+    public function destroy($id)
     {
         //hapus dari database
         $produk = Produk::findOrFail($id);

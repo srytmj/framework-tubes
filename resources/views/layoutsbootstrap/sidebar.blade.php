@@ -33,16 +33,18 @@
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
+
+             {{-- Masterdata --}}
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Masterdata</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ url('perusahaan') }}" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('distributor') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-layout"></i>
                 </span>
-                <span class="hide-menu">Perusahaan</span>
+                <span class="hide-menu">Distributor</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -54,19 +56,19 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ url('contohform') }}" aria-expanded="false">
-                <span>
-                  <i class="ti ti-cards"></i>
-                </span>
-                <span class="hide-menu">ContohForm</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ url('pelanggan') }}" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('pegawai') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-file-description"></i>
                 </span>
-                <span class="hide-menu">Pelanggan</span>
+                <span class="hide-menu">Pegawai</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ url('bahanbaku') }}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-typography"></i>
+                </span>
+                <span class="hide-menu">Bahan Baku</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -77,27 +79,54 @@
                 <span class="hide-menu">Produk</span>
               </a>
             </li>
+
+             {{-- Transaksi --}}
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Transaksi</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('bahanbakupembelian') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-login"></i>
+                  <i class="ti ti-typography"></i>
                 </span>
-                <span class="hide-menu">Login</span>
+                <span class="hide-menu">Pembelian Bahan Baku</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('produksi') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-user-plus"></i>
+                  <i class="ti ti-typography"></i>
                 </span>
-                <span class="hide-menu">Register</span>
+                <span class="hide-menu">Produksi</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ url('produkpenjualan') }}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-typography"></i>
+                </span>
+                <span class="hide-menu">Penjualan</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ url('pegawaipenggajian') }}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-typography"></i>
+                </span>
+                <span class="hide-menu">Penggajian</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ url('produk') }}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-typography"></i>
+                </span>
+                <span class="hide-menu">Produk</span>
               </a>
             </li>
 
+            {{-- Laporan --}}
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">LAPORAN</span>
@@ -119,6 +148,7 @@
               </a>
             </li>
 
+            {{-- Grafik --}}
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">GRAFIK</span>
@@ -140,6 +170,7 @@
               </a>
             </li>
 
+            {{-- Analisis Data --}}
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">ANALISIS DATA</span>

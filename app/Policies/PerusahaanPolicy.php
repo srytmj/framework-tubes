@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Perusahaan;
+use App\Models\Distributor;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class PerusahaanPolicy
+class DistributorPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class PerusahaanPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Perusahaan $perusahaan): bool
+    public function view(User $user, Distributor $distributor): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class PerusahaanPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Perusahaan $perusahaan): bool
+    public function update(User $user, Distributor $distributor): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class PerusahaanPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Perusahaan $perusahaan): bool
+    public function delete(User $user, Distributor $distributor): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class PerusahaanPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Perusahaan $perusahaan): bool
+    public function restore(User $user, Distributor $distributor): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class PerusahaanPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Perusahaan $perusahaan): bool
+    public function forceDelete(User $user, Distributor $distributor): bool
     {
         //
     }

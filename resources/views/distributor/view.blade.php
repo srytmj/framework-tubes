@@ -56,15 +56,15 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-12">
-                  <h5 class="card-title fw-semibold mb-4">Produk</h5>
+                  <h5 class="card-title fw-semibold mb-4">Distributor</h5>
                   <div class="card">
 
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Master Data Produk</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Master Data Distributor</h6>
                             
                             <!-- Tombol Tambah Data -->
-                            <a href="{{ url('/produk/create') }}" class="btn btn-primary btn-icon-split btn-sm">
+                            <a href="{{ url('/distributor/create') }}" class="btn btn-primary btn-icon-split btn-sm">
                                 <span class="icon text-white-50">
                                     <i class="ti ti-plus"></i>
                                 </span>
@@ -76,56 +76,51 @@
 
                     <div class="card-body">
                       <!-- Awal Dari Tabel -->
-                      <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Kode</th>
-                                    <th>Nama</th>
-                                    <th>Jenis</th>
-                                    <th>Harga</th>
-                                    <th>Stok</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tfoot class="thead-dark">
-                                <tr>
-                                    <th>Kode</th>
-                                    <th>Nama</th>
-                                    <th>Jenis</th>
-                                    <th>Harga</th>
-                                    <th>Stok</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                @foreach ($produk as $p)
-                                    <tr>
-                                        <td>{{ $p->produk_kode }}</td>
-                                        <td>{{ $p->produk_nama }}</td>
-                                        <td>{{ $p->produk_jenis }}</td>
-                                        <td>{{ $p->produk_harga }}</td>
-                                        <td>{{ $p->produk_stok }}</td>
-                                        <td>
-                                            <a href="{{ route('produk.edit', $p->id) }}" class="btn btn-success btn-icon-split btn-sm">
-                                                <span class="icon text-white-50">
-                                                    <i class="ti ti-check"></i>
-                                                </span>
-                                                <span class="text">Ubah</span>
-                                            </a>
-                
-                                            <a href="#" onclick="deleteConfirm(this); return false;" data-id="{{ $p->id }}" class="btn btn-danger btn-icon-split btn-sm">
-                                                <span class="icon text-white-50">
-                                                    <i class="ti ti-minus"></i>
-                                                </span>
-                                                <span class="text">Hapus</span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Kode</th>
+                                            <th>Nama</th>
+                                            <th>Alamat</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot class="thead-dark">
+                                        <tr>
+                                            <th>Kode</th>
+                                            <th>Nama</th>
+                                            <th>Alamat</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    @foreach ($distributor as $p)
+                                        <tr>
+                                            <td>{{ $p->distributor_kode }}</td>
+                                            <td>{{ $p->distributor_nama }}</td>
+                                            <td>{{ $p->alamat_distributor }}</td>
+                                            <td>
+                                                    <a href="{{ route('distributor.edit', $p->id) }}" class="btn btn-success btn-icon-split btn-sm">
+                                                        <span class="icon text-white-50">
+                                                            <i class="ti ti-check"></i>
+                                                        </span>
+                                                        <span class="text">Ubah</span>
+                                                    </a>
+
+                                                    <a href="#" onclick="deleteConfirm(this); return false;" data-id="{{ $p->id }}" class="btn btn-danger btn-icon-split btn-sm">
+                                                        <span class="icon text-white-50">
+                                                            <i class="ti ti-minus"></i>
+                                                        </span>
+                                                        <span class="text">Hapus</span>
+                                                    </a>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                     <!-- Akhir Dari Tabel -->
                     </div>
                   </div>
@@ -143,9 +138,15 @@
                 var tomboldelete = document.getElementById('btn-delete')  
                 id = e.getAttribute('data-id');
 
-                var url3 = "{{url('produk/destroy/')}}";
+                // const str = 'Hello' + id + 'World';
+                var url3 = "{{url('distributor/destroy/')}}";
                 var url4 = url3.concat("/",id);
+                // console.log(url4);
 
+                // console.log(id);
+                // var url = "{{url('distributor/destroy/"+id+"')}}";
+                
+                // url = JSON.parse(rul.replace(/"/g,'"'));
                 tomboldelete.setAttribute("href", url4); //akan meload kontroller delete
 
                 var pesan = "Data dengan ID <b>"

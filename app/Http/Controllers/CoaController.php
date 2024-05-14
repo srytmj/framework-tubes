@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coa; //load model dari kelas model coa
-use App\Models\Perusahaan; //load model dari kelas model perusahaan
+use App\Models\Distributor; //load model dari kelas model distributor
 
 use App\Http\Requests\StoreCoaRequest;
 use App\Http\Requests\UpdateCoaRequest;
@@ -35,39 +35,22 @@ class CoaController extends Controller
 
     public function index()
     {
-        // // mengambil data coa dan perusahaan dari database
-    	$coa = Coa::getCoaDetailPerusahaan();
-        $perusahaan = Perusahaan::orderBy('nama_perusahaan')->get(); 
+        // // mengambil data coa dan distributor dari database
+    	$coa = Coa::getCoaDetailDistributor();
+        $distributor = Distributor::orderBy('distributor_nama')->get(); 
 
         return view('coa/view2',
             [
                 'coa' => $coa,
-                'perusahaan' => $perusahaan
+                'distributor' => $distributor
             ]
         );
-
-
-        // // akses data dari obyek coa
-        // $coa = Coa::all();
-        // Menggunakan klausa where untuk mencari produk berdasarkan nama
-        // $coa = Coa::where('header_akun', '1')
-        //             ->where('nama_akun', 'Kas')
-        //             ->get();
-        // // var_dump($coa);
-        // // dd;
-        // return view('coa.view',
-        //              [
-        //                 'coa'=>$coa,
-        //                 'title'=>'contoh m2',
-        //                 'nama'=>'Farel Prayoga'
-        //              ]   
-        //             );
     }
 
     // handle fetch all coas ajax request
 	public function fetchAll() {
 		// $coas = Coa::all();
-        $coas = Coa::getCoaDetailPerusahaan();
+        $coas = Coa::getCoaDetailDistributor();
 		$output = '';
 		if (count($coas) > 0) {
 			$output .= '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -76,7 +59,7 @@ class CoaController extends Controller
                 <th>Kode</th>
                 <th>Nama</th>
                 <th style="text-align: center">Header</th>
-                <th>Perusahaan</th>
+                <th>Distributor</th>
                 <th style="text-align: center">Aksi</th>
               </tr>
             </thead>
@@ -85,7 +68,7 @@ class CoaController extends Controller
                     <th>Kode</th>
                     <th>Nama</th>
                     <th style="text-align: center">Header</th>
-                    <th>Perusahaan</th>
+                    <th>Distributor</th>
                     <th style="text-align: center">Aksi</th>
                 </tr>
             </tfoot>
@@ -95,7 +78,7 @@ class CoaController extends Controller
                 <td>' . $coa->kode_akun . '</td>
                 <td>' . $coa->nama_akun .'</td>
                 <td>' . $coa->header_akun . '</td>
-                <td>' . $coa->nama_perusahaan . '</td>
+                <td>' . $coa->distributor_nama . '</td>
                 <td style="text-align: center">
                     <a href="#" onclick="updateConfirm(this); return false;" class="btn btn-success btn-icon-split btn-sm editbtn" value="'.$coa->id.'" data-id="'.$coa->id.'" ><span class="icon text-white-50"><i class="ti ti-pencil"></i></span></a>
                     <a href="#" onclick="deleteConfirm(this); return false;" href="#" value="'.$coa->id.'" data-id="'.$coa->id.'" class="btn btn-danger btn-icon-split btn-sm deletebtn"><span class="icon text-white-50"><i class="ti ti-trash"></i></span>
@@ -113,7 +96,7 @@ class CoaController extends Controller
     // fetch data coa ke dalam format json
     public function fetchcoa()
     {
-        $coa = Coa::getCoaDetailPerusahaan();
+        $coa = Coa::getCoaDetailDistributor();
         return response()->json([
             'coas'=>$coa,
         ]);
@@ -151,7 +134,7 @@ class CoaController extends Controller
                 'kode_akun' => 'required|min:3',
                 'nama_akun' => 'required',
                 'header_akun' => 'required',
-                'id_perusahaan' => 'required',
+                'distributor_kode' => 'required',
             ]
         );
         
@@ -187,7 +170,7 @@ class CoaController extends Controller
                 $coa->kode_akun = $request->input('kode_akun');
                 $coa->nama_akun = $request->input('nama_akun');
                 $coa->header_akun = $request->input('header_akun');
-                $coa->id_perusahaan = $request->input('id_perusahaan');
+                $coa->distributor_kode = $request->input('distributor_kode');
                 $coa->update(); //proses update ke db
 
                 return response()->json(
@@ -262,14 +245,14 @@ class CoaController extends Controller
         $coa = Coa::findOrFail($id);
         $coa->delete();
         
-        // mengambil data coa dan perusahaan dari database
+        // mengambil data coa dan distributor dari database
     	$coa = Coa::all();
-        $perusahaan = Perusahaan::orderBy('nama_perusahaan')->get(); //Project::orderBy('name')->get()
+        $distributor = Distributor::orderBy('distributor_nama')->get(); //Project::orderBy('name')->get()
 
         return view('coa/view2',
             [
                 'coa' => $coa,
-                'perusahaan' => $perusahaan,
+                'distributor' => $distributor,
                 'status_hapus' => 'Sukses Hapus'
             ]
         );

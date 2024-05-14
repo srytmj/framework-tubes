@@ -54,7 +54,7 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Data Perusahaan</h5>
+            <h5 class="card-title fw-semibold mb-4">Data Distributor</h5>
 
                 <!-- Display Error jika ada error -->
                 @if ($errors->any())
@@ -74,28 +74,28 @@
                     @method('PUT')
                     <fieldset disabled>
                       <div class="mb-3">
-                          <label for="kode_produk_label">Kode Produk</label>
-                          <input class="form-control form-control-solid" id="kode_produk_tampil" name="kode_produk_tampil" type="text" placeholder="Contoh: PD-001" value="{{$produk->kode_produk}}" readonly>
+                          <label for="produk_kode_label">Kode Produk</label>
+                          <input class="form-control form-control-solid" id="produk_kode_tampil" name="produk_kode_tampil" type="text" placeholder="Contoh: PD-001" value="{{$produk->produk_kode}}" readonly>
                       </div>
                     </fieldset>
-                    <input type="hidden" id="kode_produk" name="kode_produk" value="{{$produk->kode_produk}}">
+                    <input type="hidden" id="produk_kode" name="produk_kode" value="{{$produk->produk_kode}}">
                     
                     <div class="mb-3">
-                        <label for="nama_produk_label">Nama Produk</label>
-                        <input class="form-control form-control-solid" id="nama_produk" name="nama_produk" type="text" placeholder="Contoh: Es Teh" value="{{$produk->nama_produk}}">
+                        <label for="produk_nama_label">Nama Produk</label>
+                        <input class="form-control form-control-solid" id="produk_nama" name="produk_nama" type="text" placeholder="Contoh: Es Teh" value="{{$produk->produk_nama}}">
                     </div>
                     
                     <div class="mb-3">
-                        <label for="jenis_produk_label">Jenis Produk</label>
-                        <select class="form-control form-control-solid" id="jenis_produk" name="jenis_produk">
-                            <option value="makanan" {{$produk->jenis_produk == 'makanan' ? 'selected' : ''}}>Makanan</option>
-                            <option value="minuman" {{$produk->jenis_produk == 'minuman' ? 'selected' : ''}}>Minuman</option>
+                        <label for="produk_jenis_label">Jenis Produk</label>
+                        <select class="form-control form-control-solid" id="produk_jenis" name="produk_jenis">
+                            <option value="makanan" {{$produk->produk_jenis == 'makanan' ? 'selected' : ''}}>Makanan</option>
+                            <option value="minuman" {{$produk->produk_jenis == 'minuman' ? 'selected' : ''}}>Minuman</option>
                         </select>
                     </div>
                     
                     <div class="mb-3">
-                        <label for="harga_produk_label">Harga Produk</label>
-                        <input class="form-control form-control-solid" id="harga_produk" name="harga_produk" type="text" placeholder="Contoh: 15000" value="{{$produk->harga_produk}}">
+                        <label for="produk_harga_label">Harga Produk</label>
+                        <input class="form-control form-control-solid" id="produk_harga" name="produk_harga" type="text" placeholder="Contoh: 15000" value="{{$produk->produk_harga}}">
                     </div>
                     
                     <br>

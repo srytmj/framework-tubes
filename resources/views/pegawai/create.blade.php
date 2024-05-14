@@ -54,7 +54,7 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Data Distributor</h5>
+            <h5 class="card-title fw-semibold mb-4">Data Pegawai</h5>
 
                 <!-- Display Error jika ada error -->
                 @if ($errors->any())
@@ -69,41 +69,66 @@
                 <!-- Akhir Display Error -->
 
                 <!-- Awal Dari Input Form -->
-                <form action="{{ route('produk.store') }}" method="post">
+                <form action="{{ route('pegawai.store') }}" method="post">
                     @csrf
                     <fieldset disabled>
-                      <div class="mb-3">
-                          <label for="produk_kode_label">Kode Produk</label>
-                          <input class="form-control form-control-solid" id="produk_kode_tampil" name="produk_kode_tampil" type="text" placeholder="Contoh: PD-001" value="{{$produk_kode}}" readonly>
-                      </div>
+                        <div class="mb-3"><label for="pegawaiidlabel">Id Pegawai</label>
+                        <input class="form-control form-control-solid" id="id_pegawai_tampil" name="id_pegawai_tampil" type="text" placeholder="Contoh: PGW-001" value="{{$pegawai_id}}" readonly></div>
                     </fieldset>
-                    <input type="hidden" id="produk_kode" name="produk_kode" value="{{$produk_kode}}">
-                    
+                    <input type="hidden" id="pegawai_id" name="pegawai_id" value="{{$pegawai_id}}">
+
+                    <!-- Nama Pegawai -->
                     <div class="mb-3">
-                        <label for="produk_nama_label">Nama Produk</label>
-                        <input class="form-control form-control-solid" id="produk_nama" name="produk_nama" type="text" placeholder="Contoh: Es Teh" value="{{old('produk_nama')}}">
+                        <label for="pegawai_nama" class="form-label">Nama Pegawai</label>
+                        <input type="text" class="form-control form-control-solid" id="pegawai_nama" name="pegawai_nama" placeholder="Contoh: John Doe" value="{{ old('pegawai_nama') }}">
                     </div>
-                    
+
+                    <!-- Nomor Telepon Pegawai -->
                     <div class="mb-3">
-                        <label for="produk_jenis_label">Jenis Produk</label>
-                        <select class="form-control form-control-solid" id="produk_jenis" name="produk_jenis">
-                            <option value="makanan" {{ old('produk_jenis') == 'makanan' ? 'selected' : '' }}>Makanan</option>
-                            <option value="minuman" {{ old('produk_jenis') == 'minuman' ? 'selected' : '' }}>Minuman</option>
-                        </select>
+                        <label for="pegawai_no_telepon" class="form-label">Nomor Telepon</label>
+                        <input type="text" class="form-control form-control-solid" id="pegawai_no_telepon" name="pegawai_no_telepon" placeholder="Contoh: 081234567890" value="{{ old('pegawai_no_telepon') }}">
                     </div>
-                    
+
+                    <!-- Alamat Pegawai -->
                     <div class="mb-3">
-                        <label for="produk_harga_label">Harga Produk</label>
-                        <input class="form-control form-control-solid" id="produk_harga" name="produk_harga" type="text" placeholder="Contoh: 15000" value="{{old('produk_harga')}}">
+                        <label for="pegawai_alamat" class="form-label">Alamat Pegawai</label>
+                        <textarea class="form-control form-control-solid" id="pegawai_alamat" name="pegawai_alamat" rows="3" placeholder="Contoh: Jl. Bunga Matahari No. 16">{{ old('pegawai_alamat') }}</textarea>
                     </div>
-                    
-                    <br>
+
+                    <!-- Jenis Kelamin Pegawai -->
+                    <div class="mb-3">
+                        <label class="form-label">Jenis Kelamin</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pegawai_jenis_kelamin" id="jenis_kelamin_l" value="L" {{ old('pegawai_jenis_kelamin') == 'L' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="jenis_kelamin_l">
+                                Laki-Laki
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pegawai_jenis_kelamin" id="jenis_kelamin_p" value="P" {{ old('pegawai_jenis_kelamin') == 'P' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="jenis_kelamin_p">
+                                Perempuan
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Jabatan Pegawai -->
+                    <div class="mb-3">
+                      <label for="pegawai_jabatan" class="form-label">Jabatan Pegawai</label>
+                      <select class="form-select form-select-solid" id="pegawai_jabatan" name="pegawai_jabatan">
+                        <option value="">Pilih Jabatan</option>
+                        <option value="Koki" {{ old('pegawai_jabatan') == 'Koki' ? 'selected' : '' }}>Koki</option>
+                        <option value="Pelayan" {{ old('pegawai_jabatan') == 'Pelayan' ? 'selected' : '' }}>Pelayan</option>
+                        <option value="Kasir" {{ old('pegawai_jabatan') == 'Kasir' ? 'selected' : '' }}>Kasir</option>
+                        <option value="Petugas Kebersihan" {{ old('pegawai_jabatan') == 'Petugas Kebersihan' ? 'selected' : '' }}>Petugas Kebersihan</option>
+                        <option value="Manager" {{ old('pegawai_jabatan') == 'Manager' ? 'selected' : '' }}>Manager</option>
+                      </select>
+                    </div>
                     <!-- untuk tombol simpan -->
                     
                     <input class="col-sm-1 btn btn-success btn-sm" type="submit" value="Simpan">
 
                     <!-- untuk tombol batal simpan -->
-                    <a class="col-sm-1 btn btn-dark  btn-sm" href="{{ url('/produk') }}" role="button">Batal</a>
+                    <a class="col-sm-1 btn btn-dark  btn-sm" href="{{ url('/pegawai') }}" role="button">Batal</a>
                     
                 </form>
                 <!-- Akhir Dari Input Form -->

@@ -87,8 +87,15 @@
                     <div class="mb-3">
                         <label for="produk_jenis_label">Jenis Produk</label>
                         <select class="form-control form-control-solid" id="produk_jenis" name="produk_jenis">
-                            <option value="makanan" {{ old('produk_jenis') == 'makanan' ? 'selected' : '' }}>Makanan</option>
-                            <option value="minuman" {{ old('produk_jenis') == 'minuman' ? 'selected' : '' }}>Minuman</option>
+                            <option value="Nasi">Nasi</option>
+                            <option value="Ayam">Ayam</option>
+                            <option value="Bebek">Bebek</option>
+                            <option value="Ikan">Ikan</option>
+                            <option value="Soto">Soto</option>
+                            <option value="Sate">Sate</option>
+                            <option value="Paket">Paket</option>
+                            <option value="Tambahan">Tambahan</option>
+                            <option value="Minuman">Minuman</option>
                         </select>
                     </div>
                     

@@ -84,12 +84,13 @@
                       <div class="mb-3">
                         <label for="jenisbahanbakulabel">Jenis bahanbaku</label>
                         <select class="form-control form-control-solid" id="bahanbaku_jenis" name="bahanbaku_jenis">
-                          <option value="Pipa" {{ old('bahanbaku_jenis') == 'Pipa' ? 'selected' : '' }}>Pipa</option>
-                          <option value="Fitting" {{ old('bahanbaku_jenis') == 'Fitting' ? 'selected' : '' }}>Fitting</option>
-                          <option value="Drainase" {{ old('bahanbaku_jenis') == 'Drainase' ? 'selected' : '' }}>Drainase</option>
-                          <option value="Penyaringan" {{ old('bahanbaku_jenis') == 'Penyaringan' ? 'selected' : '' }}>Penyaringan</option>
-                          <option value="Pelapis" {{ old('bahanbaku_jenis') == 'Pelapis' ? 'selected' : '' }}>Pelapis</option>
-                          <option value="Peralatan Tambahan" {{ old('bahanbaku_jenis') == 'Peralatan Tambahan' ? 'selected' : '' }}>Peralatan Tambahan</option>
+                            <option value="Daging/ Jeroan">Daging/ Jeroan</option>
+                            <option value="Protein Nabati">Protein Nabati</option>
+                            <option value="Bumbu">Bumbu</option>
+                            <option value="Bahan Pokok">Bahan Pokok</option>
+                            <option value="Sayur">Sayur</option>
+                            <option value="Bahan Pendukung">Bahan Pendukung</option>
+                            <option value="Minuman">Minuman</option>
                         </select>
                       </div>
               

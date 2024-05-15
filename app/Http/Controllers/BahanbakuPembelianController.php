@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\BahanbakuPembelian;
+use App\Models\BahanbakuPembelianDetail;
 use App\Models\Distributor;
 use App\Http\Requests\StoreBahanbakuPembelianRequest;
 use App\Http\Requests\UpdateBahanbakuPembelianRequest;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BahanbakuPembelianController extends Controller
@@ -40,7 +42,6 @@ class BahanbakuPembelianController extends Controller
         $distributors = $distributor; // Declare the $distributors variable
 
         return view('bahanbakupembelian/create', ['bahanbaku_pembelian_kode' => BahanbakuPembelian::getKodebahanbakupembelian(), 'distributors' => $distributors]);
-        // return view('bahanbakupembelian/view');
     }
     /**
      * Store a newly created resource in storage.
@@ -70,17 +71,6 @@ class BahanbakuPembelianController extends Controller
     public function show(BahanbakuPembelian $bahanbakupembelian)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\BahanbakuPembelian  $bahanbakupembelian
-     * @return \Illuminate\Http\Response
-     */
-    public function detail(BahanbakuPembelian $bahanbakupembelian)
-    {
-        return view('bahanbakupembelian.detail', compact('bahanbakupembelian'));
     }
 
     /**
@@ -116,5 +106,27 @@ class BahanbakuPembelianController extends Controller
         $bahanbakupembelian->delete();
 
         return redirect()->route('bahanbakupembelian.index')->with('success','Data Berhasil di Hapus');
+    }
+
+    public function approve($id)
+    {
+        // Update the status to approved
+        DB::table('bahanbaku_pembelian')->where('id', $id)->update(['status' => 'approved']);
+    
+        // Get the details of the approved pembelian
+        $details = DB::table('bahanbaku_pembelian_detail')
+        ->where('bahanbaku_pembelian_kode', function($query) use ($id) {
+            $query->select('bahanbaku_pembelian_kode')
+                  ->from('bahanbaku_pembelian')
+                  ->where('id', $id);
+        }) ->get();
+
+        foreach ($details as $detail) {
+            // Update the kuantitas in the bahanbaku table
+            DB::table('bahanbaku')->where('bahanbaku_kode', $detail->bahanbaku_kode)
+                ->increment('bahanbaku_stok', $detail->kuantitas);
+        }
+    
+        return redirect()->back()->with('success', 'Pembelian Bahan Baku berhasil diapprove');
     }
 }

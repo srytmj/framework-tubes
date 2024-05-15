@@ -8,6 +8,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\BahanbakuController;
 use App\Http\Controllers\BahanbakuPembelianController;
+use App\Http\Controllers\BahanbakuPembelianDetailController;
 use App\Http\Controllers\PegawaiPenggajianController;
 
 
@@ -74,19 +75,19 @@ Route::resource('/bahanbaku', BahanbakuController::class)->middleware(['auth']);
 Route::get('/bahanbaku/destroy/{id}', [App\Http\Controllers\BahanbakuController::class,'destroy'])->middleware(['auth']);
 
 // route ke bahanbakupembelian
-// Route::get('bahanbakupembelian/tabel', [App\Http\Controllers\BahanbakuPembelianController::class,'tabel'])->middleware(['auth']);
-// Route::get('bahanbakupembelian/fetchcoa', [App\Http\Controllers\BahanbakuPembelianController::class,'fetchcoa'])->middleware(['auth']);
-// Route::get('bahanbakupembelian/fetchAll', [App\Http\Controllers\BahanbakuPembelianController::class,'fetchAll'])->middleware(['auth']);
-// Route::get('bahanbakupembelian/edit/{id}', [App\Http\Controllers\BahanbakuPembelianController::class,'edit'])->middleware(['auth']);
-// Route::get('bahanbakupembelian/destroy/{id}', [App\Http\Controllers\BahanbakuPembelianController::class,'destroy'])->middleware(['auth']);
-// Route::resource('bahanbakupembelian', BahanbakuPembelianController::class)->middleware(['auth']);
 Route::resource('/bahanbakupembelian', BahanbakuPembelianController::class)->middleware(['auth']);
 Route::get('/bahanbakupembelian/destroy/{id}', [App\Http\Controllers\BahanbakuPembelianController::class,'destroy'])->middleware(['auth']);
-Route::get('/bahanbakupembelian/detail/{id}', [App\Http\Controllers\BahanbakuPembelianController::class,'detail'])->name('bahanbakupembelian.detail')->middleware(['auth']);
+Route::get('/bahanbakupembelian/approve/{id}', [BahanBakuPembelianController::class, 'approve'])->name('bahanbakupembelian.approve');
 
-// // route ke master data persediaanbahan
-// Route::resource('/persediaanbahan', App\Http\Controllers\PersediaanbahanController::class)->middleware(['auth']);
-// Route::get('/persediaanbahan/destroy/{id}', [App\Http\Controllers\PersediaanbahanController::class,'destroy'])->middleware(['auth']);
+// route ke bahanbakupembelian detail
+Route::resource('/bahanbakupembeliandetail', BahanbakuPembelianDetailController::class)->middleware(['auth']);
+Route::get('/bahanbakupembelian/detail/{id}', [App\Http\Controllers\BahanbakuPembelianDetailController::class,'detail'])->middleware(['auth']);
+Route::get('/bahanbakupembelian/detail/{id}', [BahanbakuPembelianDetailController::class, 'detail'])->name('bahanbakupembelian.detail');
+Route::get('/getBahanBakuByJenis', [BahanbakuPembelianDetailController::class, 'getBahanbakuByJenis'])->name('getBahanBakuByJenis');
+Route::get('/bahanbakupembeliandetail/create/{id}', [BahanBakuPembelianDetailController::class, 'create'])->name('bahanbakupembeliandetail.create');
+Route::post('/bahanbakupembeliandetail', [BahanbakuPembelianDetailController::class, 'store'])->name('bahanbakupembeliandetail.store');
+Route::get('/bahanbakupembeliandetail/destroy/{id}', [App\Http\Controllers\BahanbakuPembelianDetailController::class,'destroy'])->name('bahanbakupembeliandetail.destroy');
+
 require __DIR__.'/auth.php';
 
 require __DIR__.'/auth.php';

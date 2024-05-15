@@ -43,8 +43,7 @@
                                         <i class="ti ti-list-check fs-6"></i>
                                         <p class="mb-0 fs-3">My Task</p>
                                     </a>
-                                    <a href="./authentication-login.html"
-                                        class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                                    <a href="{{ url('logout') }}" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                                 </div>
                             </div>
                         </li>
@@ -63,13 +62,11 @@
                                 <div class="card">
 
                                     <!-- Card Header - Dropdown -->
-                                    <div
-                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                         <h6 class="m-0 font-weight-bold text-primary">Pembelian Bahan Baku</h6>
 
                                         <!-- Tombol Tambah Data -->
-                                        <a href="{{ url('/bahanbakupembelian/create') }}"
-                                            class="btn btn-primary btn-icon-split btn-sm">
+                                        <a href="{{ url('/bahanbakupembelian/create') }}" class="btn btn-primary btn-icon-split btn-sm">
                                             <span class="icon text-white-50">
                                                 <i class="ti ti-plus"></i>
                                             </span>
@@ -82,20 +79,21 @@
                                     <div class="card-body">
                                         <!-- Awal Dari Tabel -->
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%"
-                                                cellspacing="0">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                                 <thead class="thead-dark">
                                                     <tr>
                                                         <th>Kode Pembelian Bahan Baku</th>
                                                         <th>Kode Distributor</th>
-                                                        <th>Aksi</th> <!-- New column -->
+                                                        <th>Status</th> <!-- New column -->
+                                                        <th>Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot class="thead-dark">
                                                     <tr>
                                                         <th>Kode Pembelian Bahan Baku</th>
                                                         <th>Kode Distributor</th>
-                                                        <th>Aksi</th> <!-- New column -->
+                                                        <th>Status</th> <!-- New column -->
+                                                        <th>Aksi</th>
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
@@ -103,14 +101,18 @@
                                                         <tr>
                                                             <td>{{ $p->bahanbaku_pembelian_kode }}</td>
                                                             <td>{{ $p->distributor_kode }}</td>
+                                                            <td>{{ $p->status }}</td> <!-- Display status -->
                                                             <td>
                                                                 <a href="{{ url('/bahanbakupembelian/detail', $p->id) }}"
                                                                     class="btn btn-info btn-sm">Detail</a>
-                                                                <!-- Detail button -->
-                                                                <button onclick="deleteConfirm(this)"
-                                                                    data-id="{{ $p->id }}"
-                                                                    class="btn btn-danger btn-sm">Delete</button>
-                                                                <!-- Delete button -->
+                                                                @if ($p->status != 'approved')
+                                                                    <button onclick="deleteConfirm(this)" data-id="{{ $p->id }}"
+                                                                        class="btn btn-danger btn-sm">Delete</button>
+                                                                @endif
+                                                                @if ($p->status != 'approved')
+                                                                    <button onclick="approveConfirm(this)" data-id="{{ $p->id }}"
+                                                                        class="btn btn-success btn-sm">Approve</button>
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -121,13 +123,10 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
-
 
             <script>
                 function deleteConfirm(e) {
@@ -137,10 +136,10 @@
                     var url3 = "{{ url('bahanbakupembelian/destroy/') }}";
                     var url4 = url3.concat("/", id);
 
-                    tomboldelete.setAttribute("href", url4); //akan meload kontroller delete
+                    tomboldelete.setAttribute("href", url4);
 
-                    var pesan = "Data dengan ID <b>"
-                    var pesan2 = " </b>akan dihapus"
+                    var pesan = "Data dengan ID <b>";
+                    var pesan2 = " </b>akan dihapus";
                     var res = id;
                     document.getElementById("xid").innerHTML = pesan.concat(res, pesan2);
 
@@ -149,7 +148,27 @@
                     });
 
                     myModal.show();
+                }
 
+                function approveConfirm(e) {
+                    id = e.getAttribute('data-id');
+
+                    var url3 = "{{ url('bahanbakupembelian/approve/') }}";
+                    var url4 = url3.concat("/", id);
+
+                    var pesan = "Data dengan ID <b>";
+                    var pesan2 = " </b>akan disetujui";
+                    var res = id;
+                    document.getElementById("xid-approve").innerHTML = pesan.concat(res, pesan2);
+
+                    var tombolapprove = document.getElementById('btn-approve')
+                    tombolapprove.setAttribute("href", url4);
+
+                    var myModal = new bootstrap.Modal(document.getElementById('approveModal'), {
+                        keyboard: false
+                    });
+
+                    myModal.show();
                 }
             </script>
 
@@ -172,4 +191,25 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal Approve Confirmation-->
+            <div class="modal fade" id="approveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin?</h5>
+                            <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                                x
+                            </button>
+                        </div>
+                        <div class="modal-body" id="xid-approve"></div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                            <a id="btn-approve" class="btn btn-success" href="#">Approve</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endsection
+

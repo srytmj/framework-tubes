@@ -103,8 +103,8 @@
                                         <tr>
                                             <td>{{ $p->transaksi_no }}</td>
                                             {{-- <td>
-                                                <img width="150px" height="150px" id="x-2" src="{{url('barang/')}}/{{ $p->foto }}" zn_id="79">
-                                                <br>{{ $p->nama_barang }}
+                                                <img width="150px" height="150px" id="x-2" src="{{url('produk/')}}/{{ $p->foto }}" zn_id="79">
+                                                <br>{{ $p->produk_nama }}
                                             </td> --}}
                                             <td>
                                                 <ul>

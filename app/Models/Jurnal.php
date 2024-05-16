@@ -16,7 +16,7 @@ class Jurnal extends Model
 
     // untuk melist kolom yang dapat dimasukkan
     protected $fillable = [
-        'id_transaksi',
+        'transaksi_id',
         'id_perusahaan',
         'kode_akun',
         'tgl_jurnal',

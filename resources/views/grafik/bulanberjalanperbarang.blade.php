@@ -182,7 +182,7 @@
                 tooltip: {
                     y: {
                         formatter: function (val) {
-                            return number_format(val)+' barang';
+                            return number_format(val)+' produk';
                         }
                     }
                 }

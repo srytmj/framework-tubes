@@ -5,7 +5,6 @@ use App\Http\Controllers\ContohformController;
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\BahanbakuController;
 use App\Http\Controllers\BahanbakuPembelianController;
 use App\Http\Controllers\BahanbakuPembelianDetailController;
@@ -13,6 +12,10 @@ use App\Http\Controllers\PegawaiPenggajianController;
 use App\Http\Controllers\ProdukDetailController;
 use App\Http\Controllers\ProduksiController;
 use App\Http\Controllers\ProduksiDetailController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\GrafikController;
+use App\Http\Controllers\JurnalController;
 
 
 use Illuminate\Support\Facades\Route;

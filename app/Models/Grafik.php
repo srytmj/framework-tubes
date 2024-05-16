@@ -34,19 +34,19 @@ class Grafik extends Model
     // untuk mendapatkan view grafik status penjualan
     public static function viewJmlPenjualan()
     {
-        $sql = "SELECT b.nama_barang,sum(a.produk_qty) as jml_penjualan 
+        $sql = "SELECT b.produk_nama,sum(a.produk_qty) as jml_penjualan 
                 FROM penjualan_detail a 
-                    join barang b on (a.id_barang=b.id)
+                    join produk b on (a.produk_id=b.id)
                     join penjualan c on (a.transaksi_no=c.transaksi_no)
                 WHERE c.status = 'selesai'
-                GROUP BY  b.nama_barang";
+                GROUP BY  b.produk_nama";
         $hasil = DB::select($sql);
 
         return $hasil;
 
     }
 
-    // untuk mendapatkan view grafik jml barang terjual
+    // untuk mendapatkan view grafik jml produk terjual
     public static function viewJmlBarangTerjual()
     {
         $sql = "
@@ -55,8 +55,8 @@ class Grafik extends Model
                     FROM penjualan a 
                         JOIN penjualan_detail b
                         ON (a.transaksi_no=b.transaksi_no)
-                        JOIN barang c
-                        ON (b.id_barang=c.id)
+                        JOIN produk c
+                        ON (b.produk_id=c.id)
                         WHERE a.status = 'selesai' 
                         AND c.id = 1
                         AND CAST(DATE_FORMAT(a.tgl_transaksi,'%Y-%m') AS CHAR CHARACTER SET utf8mb4) = ax.waktu
@@ -65,8 +65,8 @@ class Grafik extends Model
                     FROM penjualan a 
                         JOIN penjualan_detail b
                         ON (a.transaksi_no=b.transaksi_no)
-                        JOIN barang c
-                        ON (b.id_barang=c.id)
+                        JOIN produk c
+                        ON (b.produk_id=c.id)
                         WHERE a.status = 'selesai' 
                         AND c.id = 2
                         AND CAST(DATE_FORMAT(a.tgl_transaksi,'%Y-%m') AS CHAR CHARACTER SET utf8mb4) = ax.waktu
@@ -75,8 +75,8 @@ class Grafik extends Model
                     FROM penjualan a 
                         JOIN penjualan_detail b
                         ON (a.transaksi_no=b.transaksi_no)
-                        JOIN barang c
-                        ON (b.id_barang=c.id)
+                        JOIN produk c
+                        ON (b.produk_id=c.id)
                         WHERE a.status = 'selesai' 
                         AND c.id = 3
                         AND CAST(DATE_FORMAT(a.tgl_transaksi,'%Y-%m') AS CHAR CHARACTER SET utf8mb4) = ax.waktu
@@ -85,8 +85,8 @@ class Grafik extends Model
                     FROM penjualan a 
                         JOIN penjualan_detail b
                         ON (a.transaksi_no=b.transaksi_no)
-                        JOIN barang c
-                        ON (b.id_barang=c.id)
+                        JOIN produk c
+                        ON (b.produk_id=c.id)
                         WHERE a.status = 'selesai' 
                         AND c.id = 4
                         AND CAST(DATE_FORMAT(a.tgl_transaksi,'%Y-%m') AS CHAR CHARACTER SET utf8mb4) = ax.waktu

@@ -242,7 +242,7 @@
                         $('tbody').html("");
                         $.each(response.jurnal, function (key, item) {
                             var kodejurnal = "JR-";
-                            var kd_jurnal = kodejurnal.concat(item.id_transaksi);
+                            var kd_jurnal = kodejurnal.concat(item.transaksi_id);
                             var tgljurnal = item.tgl_jurnal.substring(0, 10); //YYYY-MM-DD
                             if(item.posisi_d_c=='d'){
                                 $('tbody').append('<tr>\

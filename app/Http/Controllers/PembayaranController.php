@@ -22,11 +22,11 @@ class PembayaranController extends Controller
     public function index()
     {
         // // getViewBarang()
-        $barang = Penjualan::getBarang();
+        $produk = Penjualan::getBarang();
         $id_customer = Auth::id();
         return view('penjualan.view',
                 [
-                    'barang' => $barang,
+                    'produk' => $produk,
                     'jml' => Penjualan::getJmlBarang($id_customer),
                     'jml_invoice' => Penjualan::getJmlInvoice($id_customer),
                 ]
@@ -226,7 +226,7 @@ class PembayaranController extends Controller
 
         //catat ke jurnal
         DB::table('jurnal')->insert([
-            'id_transaksi' => $data_pembayaran->id,
+            'transaksi_id' => $data_pembayaran->id,
             'id_perusahaan' => 1, //bisa diganti kalau sudah live
             'kode_akun' => '111',
             'tgl_jurnal' => $date,
@@ -237,7 +237,7 @@ class PembayaranController extends Controller
         ]);
 
         DB::table('jurnal')->insert([
-            'id_transaksi' => $data_pembayaran->id,
+            'transaksi_id' => $data_pembayaran->id,
             'id_perusahaan' => 1, //bisa diganti kalau sudah live
             'kode_akun' => '411',
             'tgl_jurnal' => $date,

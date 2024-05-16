@@ -48,14 +48,14 @@ class Pembayaran extends Model
         $sql = "SELECT a.id,a.transaksi_no,DATE_FORMAT(a.tgl_bayar,'%Y-%m-%d') as tgl_bayar,a.tgl_konfirmasi,a.bukti_bayar,
                         a.jenis_pembayaran,a.status,
                         b.total_harga,
-                        GROUP_CONCAT(d.nama_barang ORDER BY d.nama_barang) as list_barang
+                        GROUP_CONCAT(d.produk_nama ORDER BY d.produk_nama) as list_barang
                 FROM pembayaran a
                 LEFT OUTER JOIN penjualan b
                 ON (a.transaksi_no=b.transaksi_no)
                 LEFT OUTER JOIN penjualan_detail c
                 ON (b.transaksi_no=c.transaksi_no)
-                LEFT OUTER JOIN barang d
-                ON (c.id_barang=d.id)
+                LEFT OUTER JOIN produk d
+                ON (c.produk_id=d.id)
                 GROUP BY a.id,a.transaksi_no,DATE_FORMAT(a.tgl_bayar,'%Y-%m-%d'),a.tgl_konfirmasi,a.bukti_bayar,
                         a.jenis_pembayaran,a.status,
                         b.total_harga";
@@ -71,14 +71,14 @@ class Pembayaran extends Model
         $sql = "SELECT a.id,a.transaksi_no,a.tgl_bayar,a.tgl_konfirmasi,a.bukti_bayar,
                         a.jenis_pembayaran,a.status,
                         b.total_harga,
-                        GROUP_CONCAT(d.nama_barang ORDER BY d.nama_barang) as list_barang
+                        GROUP_CONCAT(d.produk_nama ORDER BY d.produk_nama) as list_barang
                 FROM pembayaran a
                 LEFT OUTER JOIN penjualan b
                 ON (a.transaksi_no=b.transaksi_no)
                 LEFT OUTER JOIN penjualan_detail c
                 ON (b.transaksi_no=c.transaksi_no)
-                LEFT OUTER JOIN barang d
-                ON (c.id_barang=d.id)
+                LEFT OUTER JOIN produk d
+                ON (c.produk_id=d.id)
                 WHERE b.id_customer = ?
                 GROUP BY a.id,a.transaksi_no,a.tgl_bayar,a.tgl_konfirmasi,a.bukti_bayar,
                         a.jenis_pembayaran,a.status,

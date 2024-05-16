@@ -71,7 +71,7 @@
                                 <!-- masukkan ke array -->
                                 <?php
                                 foreach($grafik as $dt){
-                                    $nama_barang[] = $dt->nama_barang;
+                                    $produk_nama[] = $dt->produk_nama;
                                     $jml_penjualan[] = (int)$dt->jml_penjualan;
                                 }
                                 ?>
@@ -97,7 +97,7 @@
                     width: 500,
                     type: 'pie',
                 },
-                labels: <?php echo json_encode($nama_barang);?>,
+                labels: <?php echo json_encode($produk_nama);?>,
                 responsive: [{
                     breakpoint: 480,
                     options: {

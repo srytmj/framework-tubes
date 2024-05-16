@@ -25,44 +25,8 @@ class ProdukDetailController extends Controller
                         'produk' => $produk
                     ]
                   );
-    }
+    }  
     
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function detail($id)
-    {        
-        // Ambil data bahan baku pembelian berdasarkan ID
-        $produk = DB::table('produk')
-            ->select('produk.produk_kode AS produk_kode', 'produk.produk_nama AS produk_nama')
-            ->where('produk.id', $id)
-            ->first();
-    
-        // Jika produk tidak ditemukan, maka lempar 404
-        if (!$produk) {
-            abort(404, 'Bahanbaku Pembelian not found');
-        }
-        
-        // Ambil produk_kode dan status dari data yang ditemukan
-        $produkKode = $produk->produk_kode;
-        
-        $produkId = $id;
-    
-        // Ambil data bahan baku dengan kuantitas, harga satuan, dan subtotal
-        $bahanbaku = DB::table('bahanbaku')
-            ->join('bahanbaku_pembelian_detail', 'bahanbaku.bahanbaku_kode', '=', 'bahanbaku_pembelian_detail.bahanbaku_kode')
-            ->select('bahanbaku_pembelian_detail.id', 'bahanbaku.bahanbaku_kode', 'bahanbaku.bahanbaku_nama', 'bahanbaku.bahanbaku_jenis', 'bahanbaku_pembelian_detail.kuantitas', 'bahanbaku_pembelian_detail.harga_satuan', DB::raw('(bahanbaku_pembelian_detail.kuantitas * bahanbaku_pembelian_detail.harga_satuan) AS subtotal'))
-            ->where('bahanbaku_pembelian_detail.produk_kode', $produkKode)
-            ->get();
-    
-        // Kembalikan view dengan data yang ditemukan atau baru dibuat, data bahanbaku, dan data bahanbaku untuk dropdown
-        return view('produk.detail', compact('produk', 'bahanbaku' ,'produkKode', 'produkId'));
-    }
-    
-    
-
     /**
      * Show the form for creating a new resource.
      * @param  \App\Http\Requests\StorePegawaiRequest  $request
@@ -76,11 +40,19 @@ class ProdukDetailController extends Controller
             ->distinct()
             ->get();
         
-        $produk = $id;
-
-        // Kembalikan view untuk create dengan data bahanbakuJenisList
-        return view('produk/bahanbaku', compact('bahanbakuJenisList', 'produk'));
+        $produkId = $id;
+    
+        // Ambil nama produk dan kode produk berdasarkan produkId
+        $produk = DB::table('produk')
+            ->where('id', $produkId)
+            ->select('produk_nama', 'produk_kode')
+            ->first();
+    
+        // Kembalikan view untuk create dengan data bahanbakuJenisList, produkNama, dan produkKode
+        return view('produkdetail/create', compact('bahanbakuJenisList', 'produkId', 'produk'));
     }
+    
+    
 
     /**
      * Store a newly created resource in storage.
@@ -103,7 +75,7 @@ class ProdukDetailController extends Controller
         $produk = Produk::where('produk_kode', $validated['produk_kode']) -> value('id');
     
         // Redirect ke halaman detail bahanbaku_pembelian berdasarkan ID yang ditemukan
-        return redirect()->route('produk.detail', ['id' => $produk])->with('success', 'Data berhasil disimpan');
+        return redirect()->route('produkdetail.show', ['id' => $produk])->with('success', 'Data berhasil disimpan');
     }
     
 
@@ -115,8 +87,34 @@ class ProdukDetailController extends Controller
      */
     public function show($id)
     {
-        $pembelian = Produk::findOrFail($id);
-        return view('produk.detail', compact('pembelian'));
+        // $pembelian = Produk::findOrFail($id);
+        // return view('produk.detail', compact('pembelian'));
+                // Ambil data bahan baku pembelian berdasarkan ID
+        $produk = DB::table('produk')
+            ->select('produk.produk_kode AS produk_kode', 'produk.produk_nama AS produk_nama')
+            ->where('produk.id', $id)
+            ->first();
+    
+        // Jika produk tidak ditemukan, maka lempar 404
+        if (!$produk) {
+            abort(404, 'Bahanbaku Pembelian not found');
+        }
+        
+        // Ambil produk_kode dan status dari data yang ditemukan
+        $produkKode = $produk->produk_kode;
+        
+        $produkId = $id;
+    
+        // Ambil data bahan baku
+        $bahanbaku = DB::table('produk_detail as pd')
+            ->join('bahanbaku as bb', 'pd.bahanbaku_kode', '=', 'bb.bahanbaku_kode')
+            ->join('produk as p', 'pd.produk_kode', '=', 'p.produk_kode')
+            ->select('bb.bahanbaku_kode', 'bb.bahanbaku_nama', 'bb.bahanbaku_jenis', 'pd.jumlah')
+            ->where('p.produk_kode', '=', 'PR001')
+            ->get();
+            
+        // Kembalikan view dengan data yang ditemukan atau baru dibuat, data bahanbaku, dan data bahanbaku untuk dropdown
+        return view('produk.detail', compact('produk', 'bahanbaku' ,'produkKode', 'produkId'));
     }
 
     /**

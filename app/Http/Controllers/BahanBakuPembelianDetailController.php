@@ -52,7 +52,7 @@ class BahanbakuPembelianDetailController extends Controller
         
         $bahanbakupembelianId = $id;
     
-        // Ambil data bahan baku dengan kuantitas, harga satuan, dan subtotal
+        // Ambil data bahan baku dengan kuantitas, produk_harga satuan, dan subtotal
         $bahanbaku = DB::table('bahanbaku')
             ->join('bahanbaku_pembelian_detail', 'bahanbaku.bahanbaku_kode', '=', 'bahanbaku_pembelian_detail.bahanbaku_kode')
             ->select('bahanbaku_pembelian_detail.id', 'bahanbaku.bahanbaku_kode', 'bahanbaku.bahanbaku_nama', 'bahanbaku.bahanbaku_jenis', 'bahanbaku_pembelian_detail.kuantitas', 'bahanbaku_pembelian_detail.harga_satuan', DB::raw('(bahanbaku_pembelian_detail.kuantitas * bahanbaku_pembelian_detail.harga_satuan) AS subtotal'))

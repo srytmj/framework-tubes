@@ -84,7 +84,7 @@
                                     <th>Nama</th>
                                     <th>Jenis</th>
                                     <th>Harga</th>
-                                    <th>Stok</th>
+                                    <th>produk_stok</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -94,7 +94,7 @@
                                     <th>Nama</th>
                                     <th>Jenis</th>
                                     <th>Harga</th>
-                                    <th>Stok</th>
+                                    <th>produk_stok</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>

@@ -22,23 +22,6 @@ return new class extends Migration
             $table->timestamps(0);
         });
 
-        Schema::create('bahanbaku_pembelian', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('bahanbaku_pembelian_kode', 6)->nullable();
-            $table->string('distributor_kode', 50)->nullable();
-            $table->string('status')->default('unconfirmed');
-            $table->timestamps(0);
-        });
-
-        Schema::create('bahanbaku_pembelian_detail', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('bahanbaku_pembelian_kode', 6)->nullable();
-            $table->string('bahanbaku_kode', 6)->nullable();
-            $table->integer('harga_satuan')->nullable();
-            $table->integer('kuantitas')->default(0);
-            $table->timestamps(0);
-        });
-
         DB::table('bahanbaku')->insert([
             [
                 'bahanbaku_kode' => 'BB001',

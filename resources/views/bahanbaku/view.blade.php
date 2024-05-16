@@ -89,7 +89,7 @@
                                                         <th>Kode</th>
                                                         <th>Nama</th>
                                                         <th>Jenis</th>
-                                                        <th>Stok</th>
+                                                        <th>produk_stok</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -98,7 +98,7 @@
                                                         <th>Kode</th>
                                                         <th>Nama</th>
                                                         <th>Jenis</th>
-                                                        <th>Stok</th>
+                                                        <th>produk_stok</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </tfoot>

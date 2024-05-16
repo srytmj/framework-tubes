@@ -80,10 +80,10 @@
               </a>
             </li>
 
-             {{-- Transaksi --}}
+             {{-- Transaksi - Admin --}}
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Transaksi</span>
+              <span class="hide-menu">Transaksi Admin</span>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('bahanbakupembelian') }}" aria-expanded="false">
@@ -102,14 +102,6 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ url('produkpenjualan') }}" aria-expanded="false">
-                <span>
-                  <i class="ti ti-typography"></i>
-                </span>
-                <span class="hide-menu">Penjualan</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('pegawaipenggajian') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-typography"></i>
@@ -117,56 +109,95 @@
                 <span class="hide-menu">Penggajian</span>
               </a>
             </li>
+
+            {{-- Transaksi - Kasir --}}
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Transaksi Kasir</span>
+            </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ url('produk') }}" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('penjualan') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-typography"></i>
+                  <i class="ti ti-shopping-cart"></i>
                 </span>
-                <span class="hide-menu">Produk</span>
+                <span class="hide-menu">Penjualan</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ url('pembayaran/viewkeranjang') }}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-credit-card"></i>
+                </span>
+                <span class="hide-menu">Pembayaran</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ url('pembayaran/viewstatus') }}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-credit-card"></i>
+                </span>
+                <span class="hide-menu">Status Pembayaran</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ url('pembayaran/viewapprovalstatus') }}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-credit-card"></i>
+                </span>
+                <span class="hide-menu">Approval Pembayaran</span>
               </a>
             </li>
 
             {{-- Laporan --}}
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">LAPORAN</span>
+              <span class="hide-menu">Laporan</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('jurnal/umum') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-mood-happy"></i>
+                  <i class="ti ti-files"></i>
                 </span>
-                <span class="hide-menu">Icons</span>
+                <span class="hide-menu">Jurnal Umum</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('jurnal/bukubesar') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-aperture"></i>
+                  <i class="ti ti-archive"></i>
                 </span>
-                <span class="hide-menu">Sample Page</span>
+                <span class="hide-menu">Buku Besar</span>
               </a>
             </li>
 
             {{-- Grafik --}}
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">GRAFIK</span>
+              <span class="hide-menu">Grafik</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('grafik/viewPenjualanBlnBerjalan') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-mood-happy"></i>
+                  <i class="ti ti-dashboard"></i>
                 </span>
-                <span class="hide-menu">Icons</span>
+                <span class="hide-menu">Penjualan</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('grafik/viewJmlPenjualan') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-aperture"></i>
                 </span>
-                <span class="hide-menu">Sample Page</span>
+                <span class="hide-menu">Barang</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ url('grafik/viewJmlBarangTerjual') }}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-package"></i>
+                </span>
+                <span class="hide-menu">Barang Per Bulan</span>
               </a>
             </li>
 

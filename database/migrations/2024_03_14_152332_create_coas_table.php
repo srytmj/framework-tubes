@@ -18,48 +18,32 @@ return new class extends Migration
             $table->string('kode_akun');
             $table->string('nama_akun');
             $table->string('header_akun');
-            $table->string('distributor_kode');
+            $table->string('id_perusahaan');
             $table->timestamps();
         });
 
         DB::table('coa')->insert([
             [
-                'kode_akun' => '1101',
+                'kode_akun' => '111',
                 'nama_akun' => 'Kas',
                 'header_akun' => '1',
-                'distributor_kode' => '1',
+                'id_perusahaan' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'kode_akun' => '1102',
+                'kode_akun' => '112',
                 'nama_akun' => 'Bank',
                 'header_akun' => '1',
-                'distributor_kode' => '1',
+                'id_perusahaan' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'kode_akun' => '1201',
-                'nama_akun' => 'Piutang Usaha',
+                'kode_akun' => '411',
+                'nama_akun' => 'Pendapatan',
                 'header_akun' => '1',
-                'distributor_kode' => '1',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'kode_akun' => '2101',
-                'nama_akun' => 'Utang Usaha',
-                'header_akun' => '2',
-                'distributor_kode' => '1',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'kode_akun' => '3101',
-                'nama_akun' => 'Modal Saham',
-                'header_akun' => '3',
-                'distributor_kode' => '1',
+                'id_perusahaan' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

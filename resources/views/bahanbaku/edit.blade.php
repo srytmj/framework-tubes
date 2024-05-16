@@ -82,7 +82,7 @@
                                     value="{{ $bahanbaku->bahanbaku_kode }}" readonly>
                             </div>
                         </fieldset>
-                        <input type="hidden" id="bahanbaku_kode" name="bahanbaku_kode" harga="harga_bahanbaku" jenis="bahanbaku_jenis"
+                        <input type="hidden" id="bahanbaku_kode" name="bahanbaku_kode" produk_harga="harga_bahanbaku" jenis="bahanbaku_jenis"
                             value="{{ $bahanbaku->bahanbaku_kode }}">
 
                         <div class="mb-3"><label for="namabahanbakulabel">Nama bahanbaku</label>

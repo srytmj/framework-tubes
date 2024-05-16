@@ -70,7 +70,7 @@
                 @endif
                 <!-- Akhir Display Error -->
                 <!-- Awal Dari Input Form -->
-                <form action="{{ route('produkdetail.store', ['id' => $produkId]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('produkdetail.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="produk_kode">Kode Produk</label>
@@ -79,8 +79,8 @@
                             required>
                     </div>
                     <div class="form-group">
-                        <label for="distributor">Distributor</label>
-                        <input type="text" class="form-control" id="distributor" name="produk_nama"
+                        <label for="produk_nama">Nama Produk</label>
+                        <input type="text" class="form-control" id="produk_nama" name="produk_nama"
                             value="{{ $produk->produk_nama }}" required>
                     </div>
                     <div class="form-group">
@@ -105,32 +105,23 @@
                                             <th>Kuantitas</th>
                                         </tr>
                                     </tfoot>
-                                    {{-- <tbody>
+                                    <tbody>
                                         @foreach ($bahanbaku as $p)
                                             <tr>
                                                 <td>{{ $p->bahanbaku_kode }}</td>
                                                 <td>{{ $p->bahanbaku_nama }}</td>
                                                 <td>{{ $p->bahanbaku_jenis }}</td>
-                                                <td>{{ $p->kuantitas }}</td>
-                                                <td>
-                                                    <!-- Detail button -->
-                                                    @if($produk->status != 'approved')
-                                                        <button type="button" onclick="deleteConfirm(this)"
-                                                            data-id="{{ $p->id }}"
-                                                            class="btn btn-danger btn-sm">Delete</button>
-                                                        <!-- Delete button -->
-                                                    @endif
-                                                </td>                                                 
+                                                <td>{{ $p->jumlah }}</td>                                                
                                             </tr>
                                         @endforeach
-                                    </tbody> --}}
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- Akhir Dari Tabel -->
 
                         </div>
-                        <a class="btn btn-success" href="{{ url('/produkdetail/create', $produkId) }}" role="button">Tambah Bahan Baku</a>
-                        <a class="btn btn-dark" href="{{ route('produk.index') }}" role="button">Kembali</a>
+                        <a class="btn btn-success" href="{{ url('/produk/detail/create', $produkId) }}" role="button">Tambah Bahan Baku</a>
+                        <a class="btn btn-dark" href="" role="button">Kembali</a>
                     </div>
                 </form>
                 <!-- Akhir Dari Input Form -->

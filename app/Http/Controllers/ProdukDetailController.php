@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BahanbakuPembelianDetail;
-use App\Models\BahanbakuPembelian; 
+use App\Models\ProdukDetail;
+use App\Models\Produk; 
 use App\Models\Distributor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Http\FormRequest;
 
-class BahanbakuPembelianDetailController extends Controller
+class ProdukDetailController extends Controller
 {
         /**
      * Display a listing of the resource.
@@ -19,10 +19,10 @@ class BahanbakuPembelianDetailController extends Controller
     public function index()
     {
         //query data
-        $bahanbakupembelian = BahanbakuPembelianDetail::all();
-        return view('bahanbakupembelian.view',
+        $produk = ProdukDetail::all();
+        return view('produk.view',
                     [
-                        'bahanbakupembelian' => $bahanbakupembelian
+                        'produk' => $produk
                     ]
                   );
     }
@@ -33,34 +33,32 @@ class BahanbakuPembelianDetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function detail($id)
-    {
+    {        
         // Ambil data bahan baku pembelian berdasarkan ID
-        $bahanbakupembelian = DB::table('bahanbaku_pembelian')
-            ->join('distributor', 'bahanbaku_pembelian.distributor_kode', '=', 'distributor.distributor_kode')
-            ->select('bahanbaku_pembelian.bahanbaku_pembelian_kode as bahanbaku_pembelian_kode', 'distributor.distributor_nama as distributor_nama', 'bahanbaku_pembelian.status as status')
-            ->where('bahanbaku_pembelian.id', $id)
+        $produk = DB::table('produk')
+            ->select('produk.produk_kode AS produk_kode', 'produk.produk_nama AS produk_nama')
+            ->where('produk.id', $id)
             ->first();
     
-        // Jika bahanbakupembelian tidak ditemukan, maka lempar 404
-        if (!$bahanbakupembelian) {
+        // Jika produk tidak ditemukan, maka lempar 404
+        if (!$produk) {
             abort(404, 'Bahanbaku Pembelian not found');
         }
         
-        // Ambil bahanbakupembelian_kode dan status dari data yang ditemukan
-        $bahanbakupembelianKode = $bahanbakupembelian->bahanbaku_pembelian_kode;
-        $status = $bahanbakupembelian->status;
+        // Ambil produk_kode dan status dari data yang ditemukan
+        $produkKode = $produk->produk_kode;
         
-        $bahanbakupembelianId = $id;
+        $produkId = $id;
     
         // Ambil data bahan baku dengan kuantitas, harga satuan, dan subtotal
         $bahanbaku = DB::table('bahanbaku')
             ->join('bahanbaku_pembelian_detail', 'bahanbaku.bahanbaku_kode', '=', 'bahanbaku_pembelian_detail.bahanbaku_kode')
             ->select('bahanbaku_pembelian_detail.id', 'bahanbaku.bahanbaku_kode', 'bahanbaku.bahanbaku_nama', 'bahanbaku.bahanbaku_jenis', 'bahanbaku_pembelian_detail.kuantitas', 'bahanbaku_pembelian_detail.harga_satuan', DB::raw('(bahanbaku_pembelian_detail.kuantitas * bahanbaku_pembelian_detail.harga_satuan) AS subtotal'))
-            ->where('bahanbaku_pembelian_detail.bahanbaku_pembelian_kode', $bahanbakupembelianKode)
+            ->where('bahanbaku_pembelian_detail.produk_kode', $produkKode)
             ->get();
     
         // Kembalikan view dengan data yang ditemukan atau baru dibuat, data bahanbaku, dan data bahanbaku untuk dropdown
-        return view('bahanbakupembelian.detail', compact('bahanbakupembelian', 'bahanbaku' ,'bahanbakupembelianKode', 'bahanbakupembelianId', 'status'));
+        return view('produk.detail', compact('produk', 'bahanbaku' ,'produkKode', 'produkId'));
     }
     
     
@@ -77,16 +75,11 @@ class BahanbakuPembelianDetailController extends Controller
             ->select('bahanbaku_jenis')
             ->distinct()
             ->get();
-
-        // Misalkan bahanbaku_pembelian_kode diambil dari tabel bahanbaku_pembelian
-        $bahanbakuPembelianKode = DB::table('bahanbaku_pembelian')
-            ->where('id', $id)
-            ->value('bahanbaku_pembelian_kode');  // Ganti dengan logika yang sesuai
         
-        $bahanbakuPembelianId = $id;
+        $produk = $id;
 
         // Kembalikan view untuk create dengan data bahanbakuJenisList
-        return view('bahanbakupembelian/bahanbaku', compact('bahanbakuJenisList', 'bahanbakuPembelianKode', 'bahanbakuPembelianId'));
+        return view('produk/bahanbaku', compact('bahanbakuJenisList', 'produk'));
     }
 
     /**
@@ -98,58 +91,57 @@ class BahanbakuPembelianDetailController extends Controller
     {    
         // Validasi input
         $validated = $request->validate([
-            'bahanbaku_pembelian_kode' => 'required',
+            'produk_kode' => 'required',
             'bahanbaku_kode' => 'required',
-            'kuantitas' => 'required|integer',
-            'harga_satuan' => 'required|numeric',
+            'jumlah' => 'required|integer',
         ]);
     
         // Simpan data ke tabel bahanbaku_pembelian_detail
-        BahanbakuPembelianDetail::create($request->all());
+        ProdukDetail::create($request->all());
     
         // Dapatkan ID dari tabel bahanbaku_pembelian berdasarkan kode yang diberikan
-        $bahanbakuPembelianId = BahanbakuPembelian::where('bahanbaku_pembelian_kode', $validated['bahanbaku_pembelian_kode']) -> value('id');
+        $produk = Produk::where('produk_kode', $validated['produk_kode']) -> value('id');
     
         // Redirect ke halaman detail bahanbaku_pembelian berdasarkan ID yang ditemukan
-        return redirect()->route('bahanbakupembelian.detail', ['id' => $bahanbakuPembelianId])->with('success', 'Data berhasil disimpan');
+        return redirect()->route('produk.detail', ['id' => $produk])->with('success', 'Data berhasil disimpan');
     }
     
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BahanbakuPembelianDetail  $bahanbakupembelian
+     * @param  \App\Models\ProdukDetail  $produk
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $pembelian = BahanBakuPembelian::findOrFail($id);
-        return view('bahanbakupembelian.detail', compact('pembelian'));
+        $pembelian = Produk::findOrFail($id);
+        return view('produk.detail', compact('pembelian'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateBahanbakuPembelianRequest  $request
-     * @param  \App\Models\BahanbakuPembelianDetail  $bahanbakupembelian
+     * @param  \App\Models\ProdukDetail  $produk
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBahanbakuPembelianRequest $request, BahanbakuPembelianDetail $bahanbakupembelian)
+    public function update(UpdateBahanbakuPembelianRequest $request, ProdukDetail $produk)
     {
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BahanbakuPembelianDetail  $bahanbakupembelian
+     * @param  \App\Models\ProdukDetail  $produk
      * @return \Illuminate\Http\Response
      */
-    // public function destroy(BahanbakuPembelianDetail $bahanbakupembelian)
+    // public function destroy(ProdukDetail $produk)
     public function destroy($id)
     {
         //hapus dari database
-        $bahanbakupembelian = BahanbakuPembelianDetail::findOrFail($id);
-        $bahanbakupembelian->delete();
+        $produk = ProdukDetail::findOrFail($id);
+        $produk->delete();
 
         return redirect()->back()->with('success', 'Data berhasil dihapus');
     }

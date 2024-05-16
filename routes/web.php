@@ -10,6 +10,7 @@ use App\Http\Controllers\BahanbakuController;
 use App\Http\Controllers\BahanbakuPembelianController;
 use App\Http\Controllers\BahanbakuPembelianDetailController;
 use App\Http\Controllers\PegawaiPenggajianController;
+use App\Http\Controllers\ProdukDetailController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -88,6 +89,13 @@ Route::get('/bahanbakupembeliandetail/create/{id}', [BahanBakuPembelianDetailCon
 Route::post('/bahanbakupembeliandetail', [BahanbakuPembelianDetailController::class, 'store'])->name('bahanbakupembeliandetail.store');
 Route::get('/bahanbakupembeliandetail/destroy/{id}', [App\Http\Controllers\BahanbakuPembelianDetailController::class,'destroy'])->name('bahanbakupembeliandetail.destroy');
 
-require __DIR__.'/auth.php';
+// route ke produkdetail
+Route::resource('/produk/detail', ProdukDetailController::class)->middleware(['auth']);
+Route::get('/produk/detail/{id}', [ProdukDetailController::class, 'show'])->name('produkdetail.show');
+Route::get('/produk/detail/{id}/create', [ProdukDetailController::class, 'create'])->name('produkdetail.create');
+Route::post('/produk/detail/', [ProdukDetailController::class, 'store'])->name('produkdetail.store');
+Route::get('/produk/detail/{id}/edit', [ProdukDetailController::class, 'edit'])->name('produkdetail.edit');
+Route::put('/produk/detail/{id}', [ProdukDetailController::class, 'update'])->name('produkdetail.update');
+Route::delete('/produk/detail/{id}', [ProdukDetailController::class, 'destroy'])->name('produkdetail.destroy');
 
 require __DIR__.'/auth.php';

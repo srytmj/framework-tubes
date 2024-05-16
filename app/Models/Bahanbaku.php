@@ -37,4 +37,9 @@ class Bahanbaku extends Model
 
         return $bahanbaku_kode_baru;
     }
+
+    public function produkdetails() {
+        return $this->hasMany(ProdukDetail::class);
+    }
+    
 }

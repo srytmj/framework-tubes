@@ -39,4 +39,9 @@ class Produk extends Model
 
         return $noakhir;
 
-    }}
+    }
+    
+    public function produkdetails() {
+        return $this->hasMany(ProdukDetail::class);
+    }
+}

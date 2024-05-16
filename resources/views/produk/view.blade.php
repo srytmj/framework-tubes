@@ -107,6 +107,9 @@
                                         <td>{{ $p->produk_harga }}</td>
                                         <td>{{ $p->produk_stok }}</td>
                                         <td>
+                                            <a href="{{ url('/produk/detail', $p->id) }}"
+                                              class="btn btn-info btn-sm">Detail</a>
+                                              
                                             <a href="{{ route('produk.edit', $p->id) }}" class="btn btn-success btn-icon-split btn-sm">
                                                 <span class="icon text-white-50">
                                                     <i class="ti ti-check"></i>

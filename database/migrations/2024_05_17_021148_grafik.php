@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        DB::statement("DROP VIEW IF EXISTS v_waktu");
+        DB::statement("DROP VIEW IF EXISTS v_waktu_parameter");
         // Create view v_waktu
         DB::statement("CREATE VIEW v_waktu AS
                         SELECT '2024-01' AS `waktu` UNION 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nama_akun');
             $table->string('header_akun');
             $table->string('id_perusahaan');
+            $table->string('distributor_kode');
             $table->timestamps();
         });
 
@@ -28,6 +29,7 @@ return new class extends Migration
                 'nama_akun' => 'Kas',
                 'header_akun' => '1',
                 'id_perusahaan' => '1',
+                'distributor_kode' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -36,6 +38,7 @@ return new class extends Migration
                 'nama_akun' => 'Bank',
                 'header_akun' => '1',
                 'id_perusahaan' => '1',
+                'distributor_kode' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -44,6 +47,7 @@ return new class extends Migration
                 'nama_akun' => 'Pendapatan',
                 'header_akun' => '1',
                 'id_perusahaan' => '1',
+                'distributor_kode' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

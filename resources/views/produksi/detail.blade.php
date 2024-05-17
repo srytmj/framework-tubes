@@ -134,7 +134,7 @@
 
                         </div>
                         @if($produksi->status != 'approved')
-                            <a class="btn btn-success" href="{{ url('/produksi/create', $produksiId) }}" role="button">Tambah Produk</a>
+                            <a class="btn btn-success" href="{{ url('/produksi/detail/create', $produksiId) }}" role="button">Tambah Produk</a>
                         @endif                       
                         <a class="btn btn-dark" href="{{ route('produksi.index') }}" role="button">Kembali</a>
                     </div>
@@ -147,7 +147,7 @@
     <script>
         function deleteConfirm(e) {
             const id = e.getAttribute('data-id');
-            const deleteUrl = `{{ url('produksidetail/destroy') }}/${id}`;
+            const deleteUrl = `{{ url('produksi/detail/destroy') }}/${id}`;
             const deleteButton = document.getElementById('btn-delete');
 
             deleteButton.setAttribute('href', deleteUrl);

@@ -108,9 +108,10 @@ Route::resource('/produksi', ProduksiController::class)->middleware(['auth']);
 Route::get('/produksi/detail/{id}', [App\Http\Controllers\ProduksiController::class,'detail'])->middleware(['auth']);
 Route::get('/produksi/detail/{id}', [ProduksiDetailController::class, 'detail'])->name('produksi.detail');
 Route::get('/getProdukByJenis', [ProduksiDetailController::class, 'getProdukByJenis'])->name('getProdukByJenis');
-Route::post('/produksi', [ProduksiDetailController::class, 'store'])->name('produksi.store');
-Route::get('/produksi/destroy/{id}', [App\Http\Controllers\ProduksiDetailController::class,'destroy'])->name('produksidetail.destroy');
-Route::get('/produksi/create/{id}', [ProduksiDetailController::class, 'create'])->name('produksidetail.create');
+Route::post('/produksi', [ProduksiController::class, 'store'])->name('produksi.store');
+Route::post('/produksi/detail', [ProduksiDetailController::class, 'store'])->name('produksidetail.store');
+Route::get('/produksi/detail/destroy/{id}', [App\Http\Controllers\ProduksiDetailController::class,'destroy'])->name('produksidetail.destroy');
+Route::get('/produksi/detail/create/{id}', [ProduksiDetailController::class, 'create'])->name('produksidetail.create');
 Route::get('/produksi/approve/{id}', [ProduksiController::class, 'approve'])->name('produksi.approve');
 
 // untuk transaksi penjualan

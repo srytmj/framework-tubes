@@ -54,7 +54,7 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Data BahanbakuPembelian</h5>
+            <h5 class="card-title fw-semibold mb-4">Data Produksi</h5>
 
                 <!-- Display Error jika ada error -->
                 @if ($errors->any())
@@ -73,7 +73,7 @@
                   @csrf
                   <fieldset>
                       <div class="mb-3">
-                          <label for="kodeproduksilabel">Kode BahanbakuPembelian</label>
+                          <label for="kodeproduksilabel">Kode Produksi</label>
                           <input class="form-control form-control-solid" id="produksi_kode" name="produksi_kode" type="text" value="{{$produksi_kode}}" readonly>
                       </div>
 

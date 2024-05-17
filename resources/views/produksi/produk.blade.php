@@ -21,7 +21,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('produksi.store') }}" method="post">
+                    <form action="{{ route('produksidetail.store') }}" method="post">
                         @csrf
 
                         <!-- Input Hidden for produksi_kode -->

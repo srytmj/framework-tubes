@@ -31,13 +31,13 @@ class bahanbakuController extends Controller
         // 1. query dulu ke db, select max untuk mengetahui posisi terakhir 
         //mengambil dan mengembalikan data dari bd
         
-        // return view('bahanbaku/create',
-        //             [
-        //                 'bahanbaku_kode' => bahanbaku::getKodebahanbaku()
-        //             ]
-        //           );
+        return view('bahanbaku/create',
+                    [
+                        'bahanbaku_kode' => bahanbaku::getKodebahanbaku()
+                    ]
+                  );
 
-        // return view('pbahanbaku/view');
+        return view('bahanbaku/view');
     }
 
     /**

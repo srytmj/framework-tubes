@@ -18,8 +18,11 @@
     }
   </style>
 
+  <!-- Include ApexCharts library -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
   <!-- Untuk Tambahan DataTables -->
-  <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">	
+  <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
   <!-- Bootstrap core JavaScript-->
   <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
@@ -33,10 +36,14 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
+
   <!-- Tambahan form validation pop up -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- fancy box -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
+
+  <!-- Untuk akses midtrans -->
+  <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{env('MIDTRANS_CLIENT_KEY')}}"></script>
 
 </head>

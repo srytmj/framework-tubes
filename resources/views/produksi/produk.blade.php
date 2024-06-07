@@ -9,8 +9,6 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title fw-semibold mb-4">Data Produk</h5>
-
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -21,21 +19,40 @@
                         </div>
                     @endif
 
+                    <!-- Awal Dari Tabel -->
+                    <h5 class="card-title fw-semibold mt-5">Produk Yang Siap Dibuat</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Jenis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($produk as $item)
+                                    <tr>
+                                        <td>{{ $item->produk_nama }}</td>
+                                        <td>{{ $item->produk_jenis }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Akhir Dari Tabel -->
+
                     <form action="{{ route('produksidetail.store') }}" method="post">
                         @csrf
 
-                        <!-- Input Hidden for produksi_kode -->
-                        <input type="" id="produksi_kode" name="produksi_kode"
-                            value="{{ $ProduksiKode }}">
+                        <!-- Hidden produksi_kode -->
+                        <input type="" id="produksi_kode" name="produksi_kode" value="{{ $ProduksiKode }}" hidden>
 
-                        <!-- Input Hidden for produksi_id -->
-                        <input type="" id="produksi_id" name="produksi_id"
-                            value="{{ $ProduksiId }}">
+                        <!-- Hidden produksi_id -->
+                        <input type="" id="produksi_id" name="produksi_id" value="{{ $ProduksiId }}" hidden>
 
                         <div class="mb-3">
                             <label for="produk_jenis">Jenis produk</label>
-                            <select class="form-control form-control-solid" id="produk_jenis" name="produk_jenis"
-                                required>
+                            <select class="form-control form-control-solid" id="produk_jenis" name="produk_jenis" required>
                                 <option value="">Pilih Jenis Produk</option>
                                 @foreach ($produkJenisList as $jenis)
                                     <option value="{{ $jenis->produk_jenis }}"
@@ -47,8 +64,7 @@
 
                         <div class="mb-3">
                             <label for="produk_nama">Nama Produk</label>
-                            <select class="form-control form-control-solid" id="produk_nama" name="produk_kode"
-                                required>
+                            <select class="form-control form-control-solid" id="produk_nama" name="produk_kode" required>
                                 <option value="">Pilih Nama Produk</option>
                                 <!-- Nama produk akan diisi secara dinamis -->
                             </select>
@@ -85,7 +101,7 @@
                             .attr('value', ''));
                         $.each(data, function(key, value) {
                             namaProdukDropdown.append($('<option>').text(value
-                                    .produk_nama).attr('value', value
+                                .produk_nama).attr('value', value
                                 .produk_kode));
                         });
                     }).fail(function(jqXHR, textStatus, errorThrown) {

@@ -50,20 +50,15 @@ class bahanbakuController extends Controller
             'bahanbaku_nama' => 'required',
             'harga_bahanbaku' => 'required',
             'bahanbaku_jenis' => 'required',
-            'foto_bahanbaku' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'bahanbaku_satuan' => 'required',
         ]);
-    
-        $file = $request->file('foto_bahanbaku');
-        $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $tujuan_upload = 'fotobahanbaku';
-        $file->move($tujuan_upload, $fileName);
-    
+        
         $empData = [
             'bahanbaku_kode' => $request->input('bahanbaku_kode'),
             'bahanbaku_nama' => $request->input('bahanbaku_nama'),
             'harga_bahanbaku' => $request->input('harga_bahanbaku'),
             'bahanbaku_jenis' => $request->input('bahanbaku_jenis'),
-            'foto_bahanbaku' => $fileName,
+            'bahanbaku_satuan' => $request->input('bahanbaku_satuan'),
         ];
     
         Bahanbaku::create($empData);
@@ -98,7 +93,7 @@ class bahanbakuController extends Controller
             'bahanbaku_nama' => 'required',
             'harga_bahanbaku' => 'required',
             'bahanbaku_jenis' => 'required',
-            'foto_bahanbaku' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'bahanbaku_satuan' => 'required',
         ]);
     
         $empData = [
@@ -106,21 +101,8 @@ class bahanbakuController extends Controller
             'bahanbaku_nama' => $request->input('bahanbaku_nama'),
             'harga_bahanbaku' => $request->input('harga_bahanbaku'),
             'bahanbaku_jenis' => $request->input('bahanbaku_jenis'),
+            'bahanbaku_satuan' => $request->input('bahanbaku_satuan'),
         ];
-    
-        if ($request->hasFile('foto_bahanbaku')) {
-            $file = $request->file('foto_bahanbaku');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $tujuan_upload = 'fotobahanbaku';
-            $file->move($tujuan_upload, $fileName);
-    
-            // Delete old image
-            if ($bahanbaku->foto_bahanbaku && file_exists(public_path('fotobahanbaku/' . $bahanbaku->foto_bahanbaku))) {
-                unlink(public_path('fotobahanbaku/' . $bahanbaku->foto_bahanbaku));
-            }
-    
-            $empData['foto_bahanbaku'] = $fileName;
-        }
     
         $bahanbaku->update($empData);
     

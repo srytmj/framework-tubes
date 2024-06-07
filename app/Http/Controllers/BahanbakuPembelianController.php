@@ -21,13 +21,19 @@ class BahanbakuPembelianController extends Controller
     public function index()
     {
         //query data
-        $bahanbakupembelian = BahanbakuPembelian::all();
-        return view('bahanbakupembelian.view',
-                    [
-                        'bahanbakupembelian' => $bahanbakupembelian
-                    ]
-                  );
+        $bahanbakupembelian = DB::table('bahanbaku_pembelian')
+            ->join('distributor', 'bahanbaku_pembelian.distributor_kode', '=', 'distributor.distributor_kode')
+            ->select(
+                'bahanbaku_pembelian.id as id',
+                'bahanbaku_pembelian.bahanbaku_pembelian_kode as bahanbaku_pembelian_kode', 
+                'distributor.distributor_nama as distributor_nama', 
+                'bahanbaku_pembelian.status as status'
+            )
+            ->get();
+    
+        return view('bahanbakupembelian.view', ['bahanbakupembelian' => $bahanbakupembelian]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -110,23 +116,47 @@ class BahanbakuPembelianController extends Controller
 
     public function approve($id)
     {
+        // $id = DB::table('bahanbaku_pembelian')->where('bahanbaku_pembelian_kode', $kode)->value('id');
+
         // Update the status to approved
-        DB::table('bahanbaku_pembelian')->where('id', $id)->update(['status' => 'approved']);
-    
+
         // Get the details of the approved pembelian
         $details = DB::table('bahanbaku_pembelian_detail')
-        ->where('bahanbaku_pembelian_kode', function($query) use ($id) {
-            $query->select('bahanbaku_pembelian_kode')
-                  ->from('bahanbaku_pembelian')
-                  ->where('id', $id);
-        }) ->get();
+            ->where('bahanbaku_pembelian_kode', function($query) use ($id) {
+                $query->select('bahanbaku_pembelian_kode')
+                    ->from('bahanbaku_pembelian')
+                    ->where('id', $id);
+            })->get();
 
         foreach ($details as $detail) {
             // Update the kuantitas in the bahanbaku table
-            DB::table('bahanbaku')->where('bahanbaku_kode', $detail->bahanbaku_kode)
-                ->increment('bahanbaku_stok', $detail->kuantitas);
+            DB::table('bahanbaku')->where('bahanbaku_kode', $detail->bahanbaku_kode)->increment('bahanbaku_stok', $detail->kuantitas);
         }
-    
+        DB::table('bahanbaku_pembelian')->where('id', $id)->update(['status' => 'approved']);
+
+        //catat ke jurnal
+        DB::table('jurnal')->insert([
+            'transaksi_id' => $data_pembayaran->id,
+            'id_perusahaan' => 1, //bisa diganti kalau sudah live
+            'kode_akun' => '512',
+            'tgl_jurnal' => $date,
+            'posisi_d_c' => 'd',
+            'nominal' => $data_penjualan->total_harga,
+            'kelompok' => 1,
+            'transaksi' => 'pembelian bahan baku',
+        ]);
+
+        DB::table('jurnal')->insert([
+            'transaksi_id' => $data_pembayaran->id,
+            'id_perusahaan' => 1, //bisa diganti kalau sudah live
+            'kode_akun' => '111',
+            'tgl_jurnal' => $date,
+            'posisi_d_c' => 'c',
+            'nominal' => $data_penjualan->total_harga,
+            'kelompok' => 1,
+            'transaksi' => 'pembelian bahan baku',
+        ]);
+
         return redirect()->back()->with('success', 'Pembelian Bahan Baku berhasil diapprove');
     }
 }

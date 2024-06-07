@@ -28,13 +28,6 @@ return new class extends Migration
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
-            [
-                'produksi_kode' => 'PRS001',
-                'produk_kode' => 'PR001',
-                'kuantitas' => '5',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]
         ]);
     }
 

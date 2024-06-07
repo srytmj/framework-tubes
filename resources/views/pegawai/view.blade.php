@@ -91,7 +91,7 @@
                                                         <th>No Telepon</th>
                                                         <th>Alamat</th>
                                                         <th>Jenis Kelamin</th>
-                                                        <th>Jabatan</th> <!-- New column -->
+                                                        <th>Jabatan</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -102,7 +102,7 @@
                                                         <th>No Telepon</th>
                                                         <th>Alamat</th>
                                                         <th>Jenis Kelamin</th>
-                                                        <th>Jabatan</th> <!-- New column -->
+                                                        <th>Jabatan</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </tfoot>
@@ -114,7 +114,7 @@
                                                             <td>{{ $p->pegawai_no_telepon }}</td>
                                                             <td>{{ $p->pegawai_alamat }}</td>
                                                             <td>{{ $p->pegawai_jenis_kelamin }}</td>
-                                                            <td>{{ $p->pegawai_jabatan }}</td> <!-- New column -->
+                                                            <td>{{ $p->pegawai_jabatan }}</td>
                                                             <td>
                                                                 <a href="{{ route('pegawai.edit', $p->id) }}"
                                                                     class="btn btn-success btn-icon-split btn-sm">

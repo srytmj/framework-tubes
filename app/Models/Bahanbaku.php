@@ -12,7 +12,7 @@ class Bahanbaku extends Model
 
     protected $table = 'bahanbaku';
 
-    protected $fillable = ['bahanbaku_kode','bahanbaku_nama','harga_bahanbaku','bahanbaku_jenis', 'foto_bahanbaku'];
+    protected $fillable = ['bahanbaku_kode','bahanbaku_nama','harga_bahanbaku','bahanbaku_jenis', 'bahanbaku_satuan'];
 
     // Method untuk mengambil nilai maksimum kode bahanbaku dari database
     //get untuk mengambil kode bahanbaku secara otomatis dari db 

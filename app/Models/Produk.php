@@ -17,7 +17,9 @@ class Produk extends Model
         'produk_nama',
         'produk_jenis',
         'produk_harga',
+        'produk_foto',
     ];
+    
     // query nilai max dari kode distributor untuk generate otomatis kode distributor
     public static function getProdukId()
     {

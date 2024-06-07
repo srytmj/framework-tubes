@@ -41,7 +41,15 @@ class ProdukController extends Controller
             'produk_nama' => 'required',
             'produk_jenis' => 'required',
             'produk_harga' => 'required',
+            'produk_foto' => 'file|required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
+
+        $file = $request->file('produk_foto');
+        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        $tujuan_upload = 'fotoproduk';
+        $file->move($tujuan_upload,$fileName);
+
+        $validated['produk_foto'] = $fileName;
 
         // masukkan ke db
         Produk::create($request->all());
@@ -85,8 +93,16 @@ class ProdukController extends Controller
             'produk_nama' => 'required',
             'produk_jenis' => 'required',
             'produk_harga' => 'required',
+            'produk_foto' => 'file|required|image|mimes:jpeg,png,jpg|max:2048'
         ]);    
 
+        $file = $request->file('produk_foto');
+        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        $tujuan_upload = 'fotoproduk';
+        $file->move($tujuan_upload,$fileName);
+
+        $validated['produk_foto'] = $fileName;
+        
         $produk->update($validated);
     
         return redirect()->route('produk.index')->with('success','Data Berhasil di Ubah');

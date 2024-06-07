@@ -54,7 +54,7 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Data Produk</h5>
+            <h5 class="card-title fw-semibold mb-4">Data Jabatan</h5>
 
                 <!-- Display Error jika ada error -->
                 @if ($errors->any())
@@ -69,52 +69,36 @@
                 <!-- Akhir Display Error -->
 
                 <!-- Awal Dari Input Form -->
-                <form action="{{ route('produk.update', $produk->id) }}" method="post">
-                    @csrf
-                    @method('PUT')
-                    <fieldset disabled>
+                <form action="{{ route('jabatan.store') }}" method="post">
+                  @csrf
+                  <fieldset disabled>
                       <div class="mb-3">
-                          <label for="produk_kode_label">Kode Produk</label>
-                          <input class="form-control form-control-solid" id="produk_kode_tampil" name="produk_kode_tampil" type="text" placeholder="Contoh: PD-001" value="{{$produk->produk_kode}}" readonly>
+                          <label for="jabatanidlabel">Id Jabatan</label>
+                          <input class="form-control form-control-solid" id="id_jabatan_tampil" name="id_jabatan_tampil" type="text" placeholder="Contoh: PGW-001" value="{{$jabatan_id}}" readonly>
                       </div>
-                    </fieldset>
-                    <input type="hidden" id="produk_kode" name="produk_kode" value="{{$produk->produk_kode}}">
-                    
-                    <div class="mb-3">
-                        <label for="produk_nama_label">Nama Produk</label>
-                        <input class="form-control form-control-solid" id="produk_nama" name="produk_nama" type="text" placeholder="Contoh: Es Teh" value="{{$produk->produk_nama}}">
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="produk_jenis_label">Jenis Produk</label>
-                        <select class="form-control form-control-solid" id="produk_jenis" name="produk_jenis">
-                          <option value="Nasi" {{ old('produk_jenis') == 'Nasi' ? 'selected' : '' }}>Nasi</option>
-                          <option value="Ayam" {{ old('produk_jenis') == 'Ayam' ? 'selected' : '' }}>Ayam</option>
-                          <option value="Bebek" {{ old('produk_jenis') == 'Bebek' ? 'selected' : '' }}>Bebek</option>
-                          <option value="Ikan" {{ old('produk_jenis') == 'Ikan' ? 'selected' : '' }}>Ikan</option>
-                          <option value="Soto" {{ old('produk_jenis') == 'Soto' ? 'selected' : '' }}>Soto</option>
-                          <option value="Sate" {{ old('produk_jenis') == 'Sate' ? 'selected' : '' }}>Sate</option>
-                          <option value="Paket" {{ old('produk_jenis') == 'Paket' ? 'selected' : '' }}>Paket</option>
-                          <option value="Tambahan" {{ old('produk_jenis') == 'Tambahan' ? 'selected' : '' }}>Tambahan</option>
-                          <option value="Minuman" {{ old('produk_jenis') == 'Minuman' ? 'selected' : '' }}>Minuman</option>
-                        </select>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="produk_harga_label">Harga Produk</label>
-                        <input class="form-control form-control-solid" id="produk_harga" name="produk_harga" type="text" placeholder="Contoh: 15000" value="{{$produk->produk_harga}}">
-                    </div>
-                    
-                    <br>
-                    <!-- untuk tombol simpan -->
-                    
-                    <input class="col-sm-1 btn btn-success btn-sm" type="submit" value="Ubah">
+                  </fieldset>
+                  <input type="hidden" id="jabatan_id" name="jabatan_id" value="{{$jabatan_id}}">
 
-                    <!-- untuk tombol batal simpan -->
-                    <a class="col-sm-1 btn btn-dark  btn-sm" href="{{ url('/produk') }}" role="button">Batal</a>
-                    
+                  <!-- Nama Jabatan -->
+                  <div class="mb-3">
+                      <label for="jabatan_nama" class="form-label">Nama Jabatan</label>
+                      <input type="text" class="form-control form-control-solid" id="jabatan_nama" name="jabatan_nama" placeholder="Contoh: John Doe" value="{{ old('jabatan_nama') }}">
+                  </div>
+
+                  <!-- Tarif Per Jam Jabatan -->
+                  <div class="mb-3">
+                      <label for="tarif_perjam" class="form-label">Tarif Per Jam</label>
+                      <input type="number" class="form-control form-control-solid" id="tarif_perjam" name="tarif_perjam" placeholder="Tarif per jam" value="{{ old('tarif_perjam') }}">
+                  </div>
+
+                  <!-- untuk tombol simpan -->
+                  <input class="col-sm-1 btn btn-success btn-sm" type="submit" value="Simpan">
+
+                  <!-- untuk tombol batal simpan -->
+                  <a class="col-sm-1 btn btn-dark btn-sm" href="{{ url('/jabatan') }}" role="button">Batal</a>
                 </form>
                 <!-- Akhir Dari Input Form -->
+
             
           </div>
         </div>

@@ -84,8 +84,23 @@ class ProduksiDetailController extends Controller
         
         $ProduksiId = $id;
 
+        $produk = DB::table('produk as p')
+        ->select('p.produk_kode', 'p.produk_nama', 'p.produk_jenis', 'p.produk_harga', 'p.produk_stok')
+        ->join(DB::raw('(SELECT pd.produk_kode,
+                              COUNT(*) AS total_bahan_baku
+                       FROM produk_detail pd
+                       JOIN bahanbaku bb ON pd.bahanbaku_kode = bb.bahanbaku_kode
+                       GROUP BY pd.produk_kode) AS bahan_baku_totals'), 'p.produk_kode', '=', 'bahan_baku_totals.produk_kode')
+        ->join(DB::raw('(SELECT pd.produk_kode,
+                              SUM(IF(bb.bahanbaku_stok >= pd.jumlah, 1, 0)) AS bahan_baku_cukup
+                       FROM produk_detail pd
+                       JOIN bahanbaku bb ON pd.bahanbaku_kode = bb.bahanbaku_kode
+                       GROUP BY pd.produk_kode) AS cukup_bahan_baku'), 'p.produk_kode', '=', 'cukup_bahan_baku.produk_kode')
+        ->whereRaw('bahan_baku_totals.total_bahan_baku = cukup_bahan_baku.bahan_baku_cukup')
+        ->get();    
+
         // Kembalikan view untuk create dengan data produkJenisList
-        return view('produksi/produk', compact('produkJenisList', 'ProduksiKode', 'ProduksiId'));
+        return view('produksi/produk', compact('produkJenisList', 'ProduksiKode', 'ProduksiId', 'produk'));
     }
 
     /**
@@ -156,9 +171,21 @@ class ProduksiDetailController extends Controller
     public function getProdukByJenis(Request $request)
     {
         $jenis = $request->query('jenis');
-        $produk = DB::table('produk')
-            ->where('produk_jenis', $jenis)
-            ->select('produk_kode', 'produk_nama')
+    
+        $produk = DB::table('produk as p')
+            ->join(DB::raw('(SELECT pd.produk_kode,
+                                  COUNT(*) AS total_bahan_baku
+                           FROM produk_detail pd
+                           JOIN bahanbaku bb ON pd.bahanbaku_kode = bb.bahanbaku_kode
+                           GROUP BY pd.produk_kode) AS bahan_baku_totals'), 'p.produk_kode', '=', 'bahan_baku_totals.produk_kode')
+            ->join(DB::raw('(SELECT pd.produk_kode,
+                                  SUM(IF(bb.bahanbaku_stok >= pd.jumlah, 1, 0)) AS bahan_baku_cukup
+                           FROM produk_detail pd
+                           JOIN bahanbaku bb ON pd.bahanbaku_kode = bb.bahanbaku_kode
+                           GROUP BY pd.produk_kode) AS cukup_bahan_baku'), 'p.produk_kode', '=', 'cukup_bahan_baku.produk_kode')
+            ->where('p.produk_jenis', $jenis)
+            ->whereRaw('bahan_baku_totals.total_bahan_baku = cukup_bahan_baku.bahan_baku_cukup')
+            ->select('p.produk_kode', 'p.produk_nama')
             ->get();
     
         return response()->json($produk);

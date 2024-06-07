@@ -23,7 +23,7 @@ return new class extends Migration
         DB::table('produk_detail')->insert([
             [
                 'produk_kode' => 'PR001',
-                'bahanbaku_kode' => 'BB027',
+                'bahanbaku_kode' => 'BB013',
                 'jumlah' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

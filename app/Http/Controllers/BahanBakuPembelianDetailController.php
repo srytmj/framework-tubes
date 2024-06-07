@@ -37,7 +37,7 @@ class BahanbakuPembelianDetailController extends Controller
         // Ambil data bahan baku pembelian berdasarkan ID
         $bahanbakupembelian = DB::table('bahanbaku_pembelian')
             ->join('distributor', 'bahanbaku_pembelian.distributor_kode', '=', 'distributor.distributor_kode')
-            ->select('bahanbaku_pembelian.bahanbaku_pembelian_kode as bahanbaku_pembelian_kode', 'distributor.distributor_nama as distributor_nama', 'bahanbaku_pembelian.status as status')
+            ->select('bahanbaku_pembelian.id as id', 'bahanbaku_pembelian.bahanbaku_pembelian_kode as bahanbaku_pembelian_kode', 'distributor.distributor_nama as distributor_nama', 'bahanbaku_pembelian.status as status')
             ->where('bahanbaku_pembelian.id', $id)
             ->first();
     
@@ -55,7 +55,7 @@ class BahanbakuPembelianDetailController extends Controller
         // Ambil data bahan baku dengan kuantitas, produk_harga satuan, dan subtotal
         $bahanbaku = DB::table('bahanbaku')
             ->join('bahanbaku_pembelian_detail', 'bahanbaku.bahanbaku_kode', '=', 'bahanbaku_pembelian_detail.bahanbaku_kode')
-            ->select('bahanbaku_pembelian_detail.id', 'bahanbaku.bahanbaku_kode', 'bahanbaku.bahanbaku_nama', 'bahanbaku.bahanbaku_jenis', 'bahanbaku_pembelian_detail.kuantitas', 'bahanbaku_pembelian_detail.harga_satuan', DB::raw('(bahanbaku_pembelian_detail.kuantitas * bahanbaku_pembelian_detail.harga_satuan) AS subtotal'))
+            ->select('bahanbaku_pembelian_detail.id', 'bahanbaku.bahanbaku_kode', 'bahanbaku.bahanbaku_nama', 'bahanbaku.bahanbaku_jenis', 'bahanbaku_pembelian_detail.kuantitas', 'bahanbaku.bahanbaku_satuan','bahanbaku_pembelian_detail.harga_satuan', DB::raw('(bahanbaku_pembelian_detail.kuantitas * bahanbaku_pembelian_detail.harga_satuan) AS subtotal'))
             ->where('bahanbaku_pembelian_detail.bahanbaku_pembelian_kode', $bahanbakupembelianKode)
             ->get();
     

@@ -83,16 +83,16 @@
                                                 <thead class="thead-dark">
                                                     <tr>
                                                         <th>Kode Pembelian Bahan Baku</th>
-                                                        <th>Kode Distributor</th>
-                                                        <th>Status</th> <!-- New column -->
+                                                        <th>Nama Distributor</th>
+                                                        <th>Status</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot class="thead-dark">
                                                     <tr>
                                                         <th>Kode Pembelian Bahan Baku</th>
-                                                        <th>Kode Distributor</th>
-                                                        <th>Status</th> <!-- New column -->
+                                                        <th>Nama Distributor</th>
+                                                        <th>Status</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </tfoot>
@@ -100,7 +100,7 @@
                                                     @foreach ($bahanbakupembelian as $p)
                                                         <tr>
                                                             <td>{{ $p->bahanbaku_pembelian_kode }}</td>
-                                                            <td>{{ $p->distributor_kode }}</td>
+                                                            <td>{{ $p->distributor_nama }}</td>
                                                             <td>{{ $p->status }}</td> <!-- Display status -->
                                                             <td>
                                                                 <a href="{{ url('/bahanbakupembelian/detail', $p->id) }}"
@@ -108,10 +108,6 @@
                                                                 @if ($p->status != 'approved')
                                                                     <button onclick="deleteConfirm(this)" data-id="{{ $p->id }}"
                                                                         class="btn btn-danger btn-sm">Delete</button>
-                                                                @endif
-                                                                @if ($p->status != 'approved')
-                                                                    <button onclick="approveConfirm(this)" data-id="{{ $p->id }}"
-                                                                        class="btn btn-success btn-sm">Approve</button>
                                                                 @endif
                                                             </td>
                                                         </tr>
@@ -149,27 +145,6 @@
 
                     myModal.show();
                 }
-
-                function approveConfirm(e) {
-                    id = e.getAttribute('data-id');
-
-                    var url3 = "{{ url('bahanbakupembelian/approve/') }}";
-                    var url4 = url3.concat("/", id);
-
-                    var pesan = "Data dengan ID <b>";
-                    var pesan2 = " </b>akan disetujui";
-                    var res = id;
-                    document.getElementById("xid-approve").innerHTML = pesan.concat(res, pesan2);
-
-                    var tombolapprove = document.getElementById('btn-approve')
-                    tombolapprove.setAttribute("href", url4);
-
-                    var myModal = new bootstrap.Modal(document.getElementById('approveModal'), {
-                        keyboard: false
-                    });
-
-                    myModal.show();
-                }
             </script>
 
             <!-- Modal Delete Confirmation-->
@@ -187,26 +162,6 @@
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
                             <a id="btn-delete" class="btn btn-danger" href="#">Hapus</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal Approve Confirmation-->
-            <div class="modal fade" id="approveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin?</h5>
-                            <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                                x
-                            </button>
-                        </div>
-                        <div class="modal-body" id="xid-approve"></div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-                            <a id="btn-approve" class="btn btn-success" href="#">Approve</a>
                         </div>
                     </div>
                 </div>

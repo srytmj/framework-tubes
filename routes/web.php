@@ -3,6 +3,7 @@
 use App\Http\Controllers\CoaController;
 use App\Http\Controllers\ContohformController;
 use App\Http\Controllers\DistributorController;
+use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\BahanbakuController;
@@ -61,6 +62,11 @@ Route::get('/distributor', [DistributorController::class, 'index']);
 Route::get('/distributor/destroy/{id}', [DistributorController::class,'destroy'])->middleware(['auth']);
 Route::resource('/distributor', DistributorController::class)->middleware(['auth']);
 
+// route ke master data jabatan
+Route::get('jabatan', [JabatanController::class, 'index']);
+Route::get('/jabatan/destroy/{id}', [JabatanController::class,'destroy'])->middleware(['auth']);
+Route::resource('/jabatan', JabatanController::class)->middleware(['auth']);
+
 // route ke master data pegawai
 Route::get('pegawai', [PegawaiController::class, 'index']);
 Route::get('/pegawai/destroy/{id}', [PegawaiController::class,'destroy'])->middleware(['auth']);
@@ -72,9 +78,9 @@ Route::get('/pegawaipenggajian/destroy/{id}', [PegawaiPenggajianController::clas
 Route::resource('/pegawaipenggajian', PegawaiPenggajianController::class)->middleware(['auth']);
 
 // route ke master data produk
-Route::resource('/produk', ProdukController::class)->middleware(['auth']);
 Route::get('produk', [ProdukController::class, 'index']);
 Route::get('/produk/destroy/{id}', [ProdukController::class,'destroy'])->middleware(['auth']);
+Route::resource('/produk', ProdukController::class)->middleware(['auth']);
 
 // route ke master data bahanbaku 
 Route::resource('/bahanbaku', BahanbakuController::class)->middleware(['auth']);
@@ -101,7 +107,7 @@ Route::get('/produk/detail/create/{id}', [ProdukDetailController::class, 'create
 Route::post('/produk/detail/', [ProdukDetailController::class, 'store'])->name('produkdetail.store');
 Route::get('/produk/detail/{id}/edit', [ProdukDetailController::class, 'edit'])->name('produkdetail.edit');
 Route::put('/produk/detail/{id}', [ProdukDetailController::class, 'update'])->name('produkdetail.update');
-Route::delete('/produk/detail/{id}', [ProdukDetailController::class, 'destroy'])->name('produkdetail.destroy');
+Route::get('/produk/detail/destroy/{id}', [ProdukDetailController::class, 'destroy'])->name('produkdetail.destroy');
 
 // route ke produksi & detail
 Route::resource('/produksi', ProduksiController::class)->middleware(['auth']);

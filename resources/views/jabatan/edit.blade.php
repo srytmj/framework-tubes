@@ -54,7 +54,7 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Data Bahan Baku</h5>
+            <h5 class="card-title fw-semibold mb-4">Data Jabatan</h5>
 
                 <!-- Display Error jika ada error -->
                 @if ($errors->any())
@@ -68,51 +68,36 @@
                 @endif
                 <!-- Akhir Display Error -->
 
-                <!-- Awal Dari Input Form -->
-                <form action="{{ route('bahanbaku.store') }}" method="post" enctype="multipart/form-data">
+                <!-- Awal Dari Form Edit -->
+                <form action="{{ route('jabatan.update', $jabatan->id) }}" method="post">
                   @csrf
-                    <fieldset disabled hidden>
-                        <div class="mb-3"><label for="kodebahanbakulabel">Kode Bahan Baku</label>
-                        <input class="form-control form-control-solid" id="bahanbaku_kode_tampil" name="bahanbaku_kode_tampil" type="text" placeholder="Contoh: BB-001" value="{{$bahanbaku_kode}}" readonly></div>
-                    </fieldset>
-                    <input type="hidden" id="bahanbaku_kode" name="bahanbaku_kode" value="{{$bahanbaku_kode}}">
+                  @method('PUT')
 
-                    <div class="mb-3"><label for="namabahanbakulabel">Nama Bahan Baku</label>
-                      <input class="form-control form-control-solid" id="bahanbaku_nama" name="bahanbaku_nama" type="text" placeholder="Masukkan Bahan Baku" value="{{old('bahanbaku_nama')}}">
-                    </div>
+                  <div class="mb-3" hidden>
+                      <label for="jabatan_id" class="form-label">Id Jabatan</label>
+                      <input type="text" class="form-control form-control-solid" id="jabatan_id" name="jabatan_id" value="{{ $jabatan->jabatan_id }}" readonly>
+                  </div>
 
-                      <div class="mb-3">
-                        <label for="jenisbahanbakulabel">Jenis Bahan Baku</label>
-                        <select class="form-control form-control-solid" id="bahanbaku_jenis" name="bahanbaku_jenis">
-                            <option value="" disabled selected>Pilih Jenis Bahan Baku</option>
-                            <option value="Daging/ Jeroan">Daging/ Jeroan</option>
-                            <option value="Protein Nabati">Protein Nabati</option>
-                            <option value="Bumbu">Bumbu</option>
-                            <option value="Bahan Pokok">Bahan Pokok</option>
-                            <option value="Sayur">Sayur</option>
-                            <option value="Bahan Pendukung">Bahan Pendukung</option>
-                            <option value="Minuman">Minuman</option>
-                        </select>
-                      </div>
+                  <!-- Nama Jabatan -->
+                  <div class="mb-3">
+                      <label for="jabatan_nama" class="form-label">Nama Jabatan</label>
+                      <input type="text" class="form-control form-control-solid" id="jabatan_nama" name="jabatan_nama" value="{{ $jabatan->jabatan_nama }}">
+                  </div>
 
-                      <div class="mb-3">
-                        <label for="jenisbahanbakulabel">Satuan Bahan Baku</label>
-                        <select class="form-control form-control-solid" id="bahanbaku_satuan" name="bahanbaku_satuan">
-                            <option value="" disabled selected>Pilih Satuan Bahan Baku</option>
-                            <option value="kg">Kilo Gram</option>
-                            <option value="gr">Gram</option>
-                            <option value="pcs">Pieces</option>
-                            <option value="ml">Mili Liter</option>
-                        </select>
-                      </div>
-              
-                  <!-- untuk tombol simpan -->
-                  <input class="col-sm-1 btn btn-success btn-sm" type="submit" value="Simpan">
-              
-                  <!-- untuk tombol batal simpan -->
-                  <a class="col-sm-1 btn btn-dark  btn-sm" href="{{ url('/bahanbaku') }}" role="button">Batal</a>
+                  <!-- Tarif Per Jam Jabatan -->
+                  <div class="mb-3">
+                      <label for="tarif_perjam" class="form-label">Tarif Per Jam</label>
+                      <input type="number" class="form-control form-control-solid" id="tarif_perjam" name="tarif_perjam" value="{{ $jabatan->tarif_perjam }}">
+                  </div>
+
+                  <!-- Tombol untuk menyimpan perubahan -->
+                  <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+
+                  <!-- Tombol untuk membatalkan edit -->
+                  <a href="{{ url('/jabatan') }}" class="btn btn-secondary">Batal</a>
                 </form>
-                <!-- Akhir Dari Input Form -->
+                <!-- Akhir Dari Form Edit -->
+
             
           </div>
         </div>

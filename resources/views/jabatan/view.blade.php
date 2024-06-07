@@ -59,16 +59,16 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5 class="card-title fw-semibold mb-4">Bahan Baku</h5>
+                                <h5 class="card-title fw-semibold mb-4">Jabatan</h5>
                                 <div class="card">
 
                                     <!-- Card Header - Dropdown -->
                                     <div
                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Master Data Bahan Baku</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Master Data Jabatan</h6>
 
                                         <!-- Tombol Tambah Data -->
-                                        <a href="{{ url('/bahanbaku/create') }}"
+                                        <a href="{{ url('/jabatan/create') }}"
                                             class="btn btn-primary btn-icon-split btn-sm">
                                             <span class="icon text-white-50">
                                                 <i class="ti ti-plus"></i>
@@ -84,40 +84,28 @@
                                         <div class="table-responsive">
                                             <table class="table table-bordered" id="dataTable" width="100%"
                                                 cellspacing="0">
-                                                <thead class="thead-dark">
+                                                <thead>
                                                     <tr>
                                                         <th>Kode</th>
-                                                        <th>Nama</th>
-                                                        <th>Jenis</th>
-                                                        <th>produk_stok</th>
+                                                        <th>Jabatan</th>
+                                                        <th>Tarif</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
-                                                <tfoot class="thead-dark">
-                                                    <tr>
-                                                        <th>Kode</th>
-                                                        <th>Nama</th>
-                                                        <th>Jenis</th>
-                                                        <th>produk_stok</th>
-                                                        <th>Aksi</th>
-                                                    </tr>
-                                                </tfoot>
                                                 <tbody>
-                                                    @foreach ($bahanbaku as $p)
+                                                    @foreach ($jabatan as $p)
                                                         <tr>
-                                                            <td>{{ $p->bahanbaku_kode }}</td>
-                                                            <td>{{ $p->bahanbaku_nama }}</td>
-                                                            <td>{{ $p->bahanbaku_jenis }}</td>
-                                                            <td>{{ $p->bahanbaku_stok }} {{ $p->bahanbaku_satuan }}</td>
+                                                            <td>{{ $p->jabatan_id }}</td>
+                                                            <td>{{ $p->jabatan_nama }}</td>
+                                                            <td>{{ $p->tarif_perjam }}</td>
                                                             <td>
-                                                                <a href="{{ route('bahanbaku.edit', $p->id) }}"
+                                                                <a href="{{ route('jabatan.edit', $p->id) }}"
                                                                     class="btn btn-success btn-icon-split btn-sm">
                                                                     <span class="icon text-white-50">
                                                                         <i class="ti ti-check"></i>
                                                                     </span>
                                                                     <span class="text">Ubah</span>
                                                                 </a>
-
                                                                 <a href="#"
                                                                     onclick="deleteConfirm(this); return false;"
                                                                     data-id="{{ $p->id }}"
@@ -131,6 +119,7 @@
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
+                                            </table>
                                         </div>
                                         <!-- Akhir Dari Tabel -->
                                     </div>
@@ -149,7 +138,7 @@
                     var tomboldelete = document.getElementById('btn-delete')
                     id = e.getAttribute('data-id');
 
-                    var url3 = "{{ url('bahanbaku/destroy/') }}";
+                    var url3 = "{{ url('jabatan/destroy/') }}";
                     var url4 = url3.concat("/", id);
 
                     tomboldelete.setAttribute("href", url4); //akan meload kontroller delete
@@ -168,7 +157,7 @@
                 }
             </script>
 
-            <!-- Modal Delete Confirmation-->
+            <!-- Logout Delete Confirmation-->
             <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">

@@ -84,7 +84,7 @@
                                                     <tr>
                                                         <th>Kode Pembelian Bahan Baku</th>
                                                         <th>Kode Distributor</th>
-                                                        <th>Status</th> <!-- New column -->
+                                                        <th>Status</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -92,7 +92,7 @@
                                                     <tr>
                                                         <th>Kode Pembelian Bahan Baku</th>
                                                         <th>Kode Distributor</th>
-                                                        <th>Status</th> <!-- New column -->
+                                                        <th>Status</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </tfoot>

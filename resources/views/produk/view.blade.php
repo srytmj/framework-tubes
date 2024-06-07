@@ -81,20 +81,22 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Kode</th>
+                                    <th>Foto Produk</th>
                                     <th>Nama</th>
                                     <th>Jenis</th>
                                     <th>Harga</th>
-                                    <th>produk_stok</th>
+                                    <th>Stok</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tfoot class="thead-dark">
                                 <tr>
                                     <th>Kode</th>
+                                    <th>Foto Produk</th>
                                     <th>Nama</th>
                                     <th>Jenis</th>
                                     <th>Harga</th>
-                                    <th>produk_stok</th>
+                                    <th>Stok</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>
@@ -102,6 +104,11 @@
                                 @foreach ($produk as $p)
                                     <tr>
                                         <td>{{ $p->produk_kode }}</td>
+                                        <td>
+                                          <a data-fancybox="gallery" href="{{url('fotoproduk')}}/{{$p->produk_foto}}">
+                                              <img src="{{url('fotoproduk')}}/{{$p->produk_foto}}" width="150px" height="150px">
+                                          </a>
+                                        </td>
                                         <td>{{ $p->produk_nama }}</td>
                                         <td>{{ $p->produk_jenis }}</td>
                                         <td>{{ $p->produk_harga }}</td>

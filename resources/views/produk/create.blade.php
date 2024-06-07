@@ -54,7 +54,7 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Data Distributor</h5>
+            <h5 class="card-title fw-semibold mb-4">Data Produk</h5>
 
                 <!-- Display Error jika ada error -->
                 @if ($errors->any())
@@ -72,7 +72,7 @@
                 <form action="{{ route('produk.store') }}" method="post">
                     @csrf
                     <fieldset disabled>
-                      <div class="mb-3">
+                      <div class="mb-3" hidden>
                           <label for="produk_kode_label">Kode Produk</label>
                           <input class="form-control form-control-solid" id="produk_kode_tampil" name="produk_kode_tampil" type="text" placeholder="Contoh: PD-001" value="{{$produk_kode}}" readonly>
                       </div>
@@ -104,6 +104,15 @@
                         <input class="form-control form-control-solid" id="produk_harga" name="produk_harga" type="text" placeholder="Contoh: 15000" value="{{old('produk_harga')}}">
                     </div>
                     
+                    <div class="mb-3">
+                      <label for="produk_foto_label">Foto Produk</label>
+                      <input class="form-control form-control-solid" id="produk_foto" name="produk_foto" type="file" accept="image/*" onchange="previewImage(event)">
+                    </div>
+                
+                    <div class="mb-3">
+                      <img id="image_preview" src="#" alt="Image Preview" style="display: none; max-width: 100%; height: auto;">
+                    </div>
+
                     <br>
                     <!-- untuk tombol simpan -->
                     
@@ -118,8 +127,17 @@
           </div>
         </div>
       </div>
-		
-		
-		
-        
+    <script>
+      function previewImage(event) {
+          var input = event.target;
+          var reader = new FileReader();
+          reader.onload = function(){
+              var imgElement = document.getElementById('image_preview');
+              imgElement.src = reader.result;
+              imgElement.style.display = 'block';
+          };
+          reader.readAsDataURL(input.files[0]);
+      }
+    </script>
+		       
 @endsection

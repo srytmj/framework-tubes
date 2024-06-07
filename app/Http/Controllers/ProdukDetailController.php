@@ -109,8 +109,8 @@ class ProdukDetailController extends Controller
         $bahanbaku = DB::table('produk_detail as pd')
             ->join('bahanbaku as bb', 'pd.bahanbaku_kode', '=', 'bb.bahanbaku_kode')
             ->join('produk as p', 'pd.produk_kode', '=', 'p.produk_kode')
-            ->select('bb.bahanbaku_kode', 'bb.bahanbaku_nama', 'bb.bahanbaku_jenis', 'pd.jumlah')
-            ->where('p.produk_kode', '=', 'PR001')
+            ->select('pd.id','bb.bahanbaku_kode', 'bb.bahanbaku_nama', 'bb.bahanbaku_jenis', 'pd.jumlah')
+            ->where('p.produk_kode', '=', $produkKode)
             ->get();
             
         // Kembalikan view dengan data yang ditemukan atau baru dibuat, data bahanbaku, dan data bahanbaku untuk dropdown

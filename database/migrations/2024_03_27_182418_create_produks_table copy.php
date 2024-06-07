@@ -27,10 +27,10 @@ return new class extends Migration
         DB::table('produk')->insert([
             [
                 'produk_kode' => 'PR001',
-                'produk_nama' => 'Es Teh Manis / Terhangat',
+                'produk_nama' => 'Es Teh Manis / Teh Hangat',
                 'produk_jenis' => 'Minuman',
                 'produk_harga' => 5000,
-                'produk_stok' => 0,
+                'produk_stok' => 3,
                 'produk_foto' => 'esteh.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -40,7 +40,7 @@ return new class extends Migration
                 'produk_nama' => 'Es Jeruk / Jeruk Hangat',
                 'produk_jenis' => 'Minuman',
                 'produk_harga' => 6000,
-                'produk_stok' => 0,
+                'produk_stok' => 1,
                 'produk_foto' => 'esjeruk.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

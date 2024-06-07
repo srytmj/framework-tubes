@@ -95,6 +95,7 @@
                                             <th>Nama</th>
                                             <th>Jenis</th>
                                             <th>Kuantitas</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot class="thead-dark">
@@ -103,6 +104,7 @@
                                             <th>Nama</th>
                                             <th>Jenis</th>
                                             <th>Kuantitas</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -111,7 +113,10 @@
                                                 <td>{{ $p->bahanbaku_kode }}</td>
                                                 <td>{{ $p->bahanbaku_nama }}</td>
                                                 <td>{{ $p->bahanbaku_jenis }}</td>
-                                                <td>{{ $p->jumlah }}</td>                                                
+                                                <td>{{ $p->jumlah }}</td>       
+                                                <td>
+                                                    <button type="button" onclick="deleteConfirm(this)"data-id="{{ $p->id }}" class="btn btn-danger btn-sm">Delete</button>
+                                                </td>                                         
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -132,7 +137,7 @@
     <script>
         function deleteConfirm(e) {
             const id = e.getAttribute('data-id');
-            const deleteUrl = `{{ url('produkdetail/destroy') }}/${id}`;
+            const deleteUrl = `{{ url('produk/detail/destroy') }}/${id}`;
             const deleteButton = document.getElementById('btn-delete');
 
             deleteButton.setAttribute('href', deleteUrl);

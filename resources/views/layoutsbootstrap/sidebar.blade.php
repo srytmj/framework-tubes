@@ -56,6 +56,14 @@
               </a>
             </li>
             <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ url('jabatan') }}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-description"></i>
+                </span>
+                <span class="hide-menu">Jabatan</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('pegawai') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-file-description"></i>

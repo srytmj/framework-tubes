@@ -22,8 +22,8 @@ return new class extends Migration
         // Insert some data
         DB::table('perusahaan')->insert([
             'kode_perusahaan' => 'PR-001',
-            'nama_perusahaan' => 'PT. Maju Mundur',
-            'alamat_perusahaan' => 'Jl. Raya Maju Mundur No. 1',
+            'nama_perusahaan' => 'Pecel Lele Sehat Sentosa',
+            'alamat_perusahaan' => 'Jl. Raya Yang Tak Kunjung Sepi',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

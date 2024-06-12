@@ -12,7 +12,7 @@
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
           <a href="./index.html" class="text-nowrap logo-img">
-            <img src="{{asset('images/logos/mukena.png')}}" width="180" alt="" />
+            {{-- <img src="{{asset('images/logos/mukena.png')}}" width="180" alt="" /> --}}
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -26,27 +26,20 @@
               <span class="hide-menu">Home</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./index.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
-
-             {{-- Masterdata --}}
+            
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Masterdata</span>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ url('distributor') }}" aria-expanded="false">
-                <span>
-                  <i class="ti ti-layout"></i>
-                </span>
-                <span class="hide-menu">Distributor</span>
-              </a>
-            </li>
+            @role('admin|manajer')
+             {{-- Masterdata --}}
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('coa') }}" aria-expanded="false">
                 <span>
@@ -71,12 +64,23 @@
                 <span class="hide-menu">Pegawai</span>
               </a>
             </li>
+            @endrole
+
+            @role('admin|manajer|petugas_gudang')
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('bahanbaku') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-typography"></i>
                 </span>
                 <span class="hide-menu">Bahan Baku</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ url('distributor') }}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout"></i>
+                </span>
+                <span class="hide-menu">Distributor</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -87,7 +91,9 @@
                 <span class="hide-menu">Produk</span>
               </a>
             </li>
-
+            @endrole
+            
+            @role('admin|manajer|petugas_gudang')
              {{-- Transaksi - Admin --}}
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -109,6 +115,9 @@
                 <span class="hide-menu">Produksi</span>
               </a>
             </li>
+            @endrole
+
+            @role('admin|manajer')
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('pegawaipenggajian') }}" aria-expanded="false">
                 <span>
@@ -117,8 +126,10 @@
                 <span class="hide-menu">Penggajian</span>
               </a>
             </li>
+            @endrole
 
             {{-- Transaksi - Kasir --}}
+            @role('admin|kasir|manajer')
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Transaksi Kasir</span>
@@ -131,7 +142,8 @@
                 <span class="hide-menu">Penjualan</span>
               </a>
             </li>
-            <li class="sidebar-item">
+
+            {{-- <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('pembayaran/viewkeranjang') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-credit-card"></i>
@@ -164,6 +176,15 @@
                 </span>
                 <span class="hide-menu">Midtrans</span>
               </a>
+            </li> --}}
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ url('midtrans/bayar') }}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-credit-card"></i>
+                </span>
+                <span class="hide-menu">Pembayaran</span>
+              </a>
             </li>
 
             <li class="sidebar-item">
@@ -171,19 +192,10 @@
                 <span>
                   <i class="ti ti-credit-card"></i>
                 </span>
-                <span class="hide-menu">View Status PG</span>
+                <span class="hide-menu">Status Penjualan</span>
               </a>
             </li>
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ url('midtrans/bayar') }}" aria-expanded="false">
-                <span>
-                  <i class="ti ti-credit-card"></i>
-                </span>
-                <span class="hide-menu">Pembayaran PG</span>
-              </a>
-            </li>
-
+            @endrole
 
             {{-- Laporan --}}
             <li class="nav-small-cap">
@@ -228,17 +240,17 @@
                 <span class="hide-menu">Barang</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            {{-- <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('grafik/viewJmlBarangTerjual') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-package"></i>
                 </span>
                 <span class="hide-menu">Barang Per Bulan</span>
               </a>
-            </li>
+            </li> --}}
 
             {{-- Analisis Data --}}
-            <li class="nav-small-cap">
+            {{-- <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">ANALISIS DATA</span>
             </li>
@@ -257,7 +269,7 @@
                 </span>
                 <span class="hide-menu">Sample Page</span>
               </a>
-            </li>
+            </li> --}}
 
           </ul>
           

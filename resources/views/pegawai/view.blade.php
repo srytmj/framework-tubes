@@ -88,9 +88,10 @@
                                                     <tr>
                                                         <th>Kode</th>
                                                         <th>Nama</th>
+                                                        <th>Email</th>
                                                         <th>No Telepon</th>
-                                                        <th>Alamat</th>
-                                                        <th>Jenis Kelamin</th>
+                                                        {{-- <th>Alamat</th>
+                                                        <th>Jenis Kelamin</th> --}}
                                                         <th>Jabatan</th>
                                                         <th>Aksi</th>
                                                     </tr>
@@ -99,9 +100,10 @@
                                                     <tr>
                                                         <th>Kode</th>
                                                         <th>Nama</th>
+                                                        <th>Email</th>
                                                         <th>No Telepon</th>
-                                                        <th>Alamat</th>
-                                                        <th>Jenis Kelamin</th>
+                                                        {{-- <th>Alamat</th> --}}
+                                                        {{-- <th>Jenis Kelamin</th> --}}
                                                         <th>Jabatan</th>
                                                         <th>Aksi</th>
                                                     </tr>
@@ -111,9 +113,10 @@
                                                         <tr>
                                                             <td>{{ $p->pegawai_id }}</td>
                                                             <td>{{ $p->pegawai_nama }}</td>
+                                                            <td>{{ $p->email }}</td>
                                                             <td>{{ $p->pegawai_no_telepon }}</td>
-                                                            <td>{{ $p->pegawai_alamat }}</td>
-                                                            <td>{{ $p->pegawai_jenis_kelamin }}</td>
+                                                            {{-- <td>{{ $p->pegawai_alamat }}</td>
+                                                            <td>{{ $p->pegawai_jenis_kelamin }}</td> --}}
                                                             <td>{{ $p->pegawai_jabatan }}</td>
                                                             <td>
                                                                 <a href="{{ route('pegawai.edit', $p->id) }}"

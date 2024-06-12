@@ -58,12 +58,12 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5 class="card-title fw-semibold mb-4">Pembelian Bahan Baku</h5>
+                                <h5 class="card-title fw-semibold mb-4">Produksi</h5>
                                 <div class="card">
 
                                     <!-- Card Header - Dropdown -->
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Pembelian Bahan Baku</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">Produksi</h6>
 
                                         <!-- Tombol Tambah Data -->
                                         <a href="{{ url('/produksi/create') }}" class="btn btn-primary btn-icon-split btn-sm">
@@ -109,10 +109,6 @@
                                                                     <button onclick="deleteConfirm(this)" data-id="{{ $p->id }}"
                                                                         class="btn btn-danger btn-sm">Delete</button>
                                                                 @endif
-                                                                @if ($p->status != 'approved')
-                                                                    <button onclick="approveConfirm(this)" data-id="{{ $p->id }}"
-                                                                        class="btn btn-success btn-sm">Approve</button>
-                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -144,27 +140,6 @@
                     document.getElementById("xid").innerHTML = pesan.concat(res, pesan2);
 
                     var myModal = new bootstrap.Modal(document.getElementById('deleteModal'), {
-                        keyboard: false
-                    });
-
-                    myModal.show();
-                }
-
-                function approveConfirm(e) {
-                    id = e.getAttribute('data-id');
-
-                    var url3 = "{{ url('produksi/approve/') }}";
-                    var url4 = url3.concat("/", id);
-
-                    var pesan = "Data dengan ID <b>";
-                    var pesan2 = " </b>akan disetujui";
-                    var res = id;
-                    document.getElementById("xid-approve").innerHTML = pesan.concat(res, pesan2);
-
-                    var tombolapprove = document.getElementById('btn-approve')
-                    tombolapprove.setAttribute("href", url4);
-
-                    var myModal = new bootstrap.Modal(document.getElementById('approveModal'), {
                         keyboard: false
                     });
 

@@ -420,7 +420,7 @@ class Penjualan extends Model
     public static function viewKeranjang($id_customer){
         $sql = "SELECT  a.transaksi_no,
                         c.produk_nama,
-                        -- c.foto,
+                        c.produk_foto,
                         c.produk_harga,
                         b.tgl_transaksi,
                         b.tgl_expired,
@@ -444,7 +444,7 @@ class Penjualan extends Model
     public static function viewSiapBayar($id_customer){
         $sql = "SELECT  a.transaksi_no,
                         c.produk_nama,
-                        -- c.foto,
+                        c.produk_foto,
                         c.produk_harga,
                         b.tgl_transaksi,
                         b.tgl_expired,

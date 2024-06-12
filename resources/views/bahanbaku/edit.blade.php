@@ -78,8 +78,7 @@
                         <fieldset disabled>
                             <div class="mb-3"><label for="kodebahanbakulabel">Kode bahanbaku</label>
                                 <input class="form-control form-control-solid" id="bahanbaku_kode_tampil"
-                                    name="bahanbaku_kode_tampil" type="text" placeholder="Contoh: BB-001"
-                                    value="{{ $bahanbaku->bahanbaku_kode }}" readonly>
+                                    name="bahanbaku_kode_tampil" type="text" value="{{ $bahanbaku->bahanbaku_kode }}" readonly>
                             </div>
                         </fieldset>
                         <input type="hidden" id="bahanbaku_kode" name="bahanbaku_kode" produk_harga="harga_bahanbaku" jenis="bahanbaku_jenis"

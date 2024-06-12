@@ -102,10 +102,10 @@
                                     @foreach ($keranjang as $p)
                                         <tr>
                                             <td>{{ $p->transaksi_no }}</td>
-                                            {{-- <td>
-                                                <img width="150px" height="150px" id="x-2" src="{{url('produk/')}}/{{ $p->foto }}" zn_id="79">
+                                            <td>
+                                                <img width="150px" height="150px" id="x-2" src="{{url('fotoproduk/')}}/{{ $p->produk_foto }}" zn_id="79">
                                                 <br>{{ $p->produk_nama }}
-                                            </td> --}}
+                                            </td>
                                             <td>
                                                 <ul>
                                                     <li>Harga   : Rp {{number_format($p->produk_harga)}}</li>

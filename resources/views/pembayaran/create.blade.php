@@ -92,9 +92,9 @@
                                 <li class="list-group-item">
                                     <b>{{$k->produk_nama}}</b> <br>
                                     <div class="row">
-                                        {{-- <div class="col-sm-2">
-                                            <img width="150px" height="150px" id="x-2" src="{{url('produk')}}/{{$k->foto}}" zn_id="79" title alt="ok">
-                                        </div> --}}
+                                        <div class="col-sm-2">
+                                            <img width="150px" height="150px" id="x-2" src="{{url('produk')}}/{{$k->produk_foto}}" zn_id="79" title alt="ok">
+                                        </div>
                                         <div class="col-sm-10" align="left">
                                             <table>
                                                 <tr>

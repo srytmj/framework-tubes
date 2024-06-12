@@ -116,10 +116,7 @@ class BahanbakuPembelianController extends Controller
 
     public function approve($id)
     {
-        // $id = DB::table('bahanbaku_pembelian')->where('bahanbaku_pembelian_kode', $kode)->value('id');
-
         // Update the status to approved
-
         // Get the details of the approved pembelian
         $details = DB::table('bahanbaku_pembelian_detail')
             ->where('bahanbaku_pembelian_kode', function($query) use ($id) {
@@ -127,36 +124,48 @@ class BahanbakuPembelianController extends Controller
                     ->from('bahanbaku_pembelian')
                     ->where('id', $id);
             })->get();
-
+    
         foreach ($details as $detail) {
             // Update the kuantitas in the bahanbaku table
             DB::table('bahanbaku')->where('bahanbaku_kode', $detail->bahanbaku_kode)->increment('bahanbaku_stok', $detail->kuantitas);
         }
+    
         DB::table('bahanbaku_pembelian')->where('id', $id)->update(['status' => 'approved']);
+    
+        // Get the nominal transaction value
+        $data_bahanbaku_pembelian_kode = $details->first()->bahanbaku_pembelian_kode;
 
-        //catat ke jurnal
+        $data_bahanbaku_pembelian = DB::table('bahanbaku_pembelian')->where('id', $id)->first();
+
+        // Calculate the total_harga from bahanbaku_pembelian_detail
+        $total_harga = DB::table('bahanbaku_pembelian_detail')
+            ->where('bahanbaku_pembelian_kode', $data_bahanbaku_pembelian_kode)
+            ->sum(DB::raw('kuantitas * harga_satuan'));
+
+        // Record to jurnal
         DB::table('jurnal')->insert([
-            'transaksi_id' => $data_pembayaran->id,
-            'id_perusahaan' => 1, //bisa diganti kalau sudah live
-            'kode_akun' => '512',
-            'tgl_jurnal' => $date,
+            'transaksi_id' => $data_bahanbaku_pembelian->id,
+            'id_perusahaan' => 1, // can be changed in production
+            'kode_akun' => '121',
+            'tgl_jurnal' => now(),
             'posisi_d_c' => 'd',
-            'nominal' => $data_penjualan->total_harga,
+            'nominal' => $total_harga,
             'kelompok' => 1,
             'transaksi' => 'pembelian bahan baku',
         ]);
 
         DB::table('jurnal')->insert([
-            'transaksi_id' => $data_pembayaran->id,
-            'id_perusahaan' => 1, //bisa diganti kalau sudah live
+            'transaksi_id' => $data_bahanbaku_pembelian->id,
+            'id_perusahaan' => 1, // can be changed in production
             'kode_akun' => '111',
-            'tgl_jurnal' => $date,
+            'tgl_jurnal' => now(),
             'posisi_d_c' => 'c',
-            'nominal' => $data_penjualan->total_harga,
+            'nominal' => $total_harga,
             'kelompok' => 1,
             'transaksi' => 'pembelian bahan baku',
         ]);
-
+    
         return redirect()->back()->with('success', 'Pembelian Bahan Baku berhasil diapprove');
     }
+    
 }

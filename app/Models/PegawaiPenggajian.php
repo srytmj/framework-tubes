@@ -16,6 +16,7 @@ class PegawaiPenggajian extends Model
         'pegawai_penggajian_id',
         'pegawai_id',
         'periode',
+        'jam_kerja',
         'gaji',
     ];
 

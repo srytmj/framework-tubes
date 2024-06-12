@@ -99,12 +99,12 @@
                                 <div class="collapse show" id="collapseCardExample{{$p->id}}">
                                     <div class="card-body">
                                         <div class="row">
-                                            {{-- <div class="col-4">
-                                                <a data-fancybox="gallery" href="{{url('produk/')}}/{{ $p->foto }}">
-                                                    <img width="150px" height="150px" id="x-2" src="{{url('produk/')}}/{{ $p->foto }}" zn_id="79">
+                                            <div class="col-4">
+                                                <a data-fancybox="gallery" href="{{url('fotoproduk/')}}/{{ $p->produk_foto }}">
+                                                    <img width="150px" height="150px" id="x-2" src="{{url('fotoproduk/')}}/{{ $p->produk_foto }}" zn_id="79">
                                                 </a>
                                             </div>
-                                            <div class="col-4" align="justify">
+                                            {{-- <div class="col-4" align="justify">
                                                 {{ $p->deskripsi }}
                                             </div> --}}
                                             <div class="col-4" align="justify">

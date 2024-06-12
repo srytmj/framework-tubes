@@ -126,25 +126,15 @@ class CobaMidtransController extends Controller
             $outputjson = json_decode($output, true); //parsing json dalam bentuk assosiative array
             // var_dump($outputjson);
 
-            $affected = DB::update(
-                'update pg_penjualan 
-                 set status_code = ?,
-                     transaction_status = ?,
-                     transaction_time = ?,
-                     settlement_time = ?,
-                     status_message = ?,
-                     merchant_id = ?
-                 where order_id = ?',
-                [
-                    $outputjson['status_code'],
-                    $outputjson['transaction_status'],
-                    $outputjson['transaction_time'],
-                    $outputjson['settlement_time'],
-                    $outputjson['status_message'],
-                    $outputjson['merchant_id'],
-                    $orderid
-                ]
-            );
+            $affected = DB::table('pg_penjualan')->where('order_id', $orderid)
+            ->update([
+                'status_code' => $outputjson['status_code'],
+                'transaction_status' => $outputjson['transaction_status'],
+                'transaction_time' => $outputjson['transaction_time'],
+                'settlement_time' => $outputjson['settlement_time'],
+                'status_message' => $outputjson['status_message'],
+                'merchant_id' => $outputjson['merchant_id']
+            ]);
 
             // simpan data
             $empData = ['transaksi_no' => $transaksi_no, 'tgl_bayar' => $outputjson['transaction_time'], 'bukti_bayar' => 'midtrans-logo.png', 'jenis_pembayaran' => 'pg', 'status' => 'approved'];
@@ -156,7 +146,7 @@ class CobaMidtransController extends Controller
               ->update(['status' => 'selesai']);
         }
 
-        return view('midtrans/autorefresh');
+        return redirect('pembayaran/viewstatusPG');
     }
 
     // bayar
@@ -248,6 +238,33 @@ class CobaMidtransController extends Controller
         $status_code = $json->status_code;
         DB::insert('insert into pg_penjualan (id_penjualan, order_id, gross_amount, transaction_id, payment_type, status_code) values (?, ?, ?, ?, ?, ?)', [$id_penjualan, $order_id, $gross_amount, $transaction_id, $payment_type, $status_code]);
 
-        return redirect('pembayaran/viewstatusPG');
+        // query dapatkan nilai nominal transaksi
+        $data_penjualan = DB::table('penjualan')->where('id', $id_penjualan)->first();
+        $data_pgpenjualan = DB::table('pg_penjualan')->where('id', $id_penjualan)->first();
+
+        //catat ke jurnal
+        DB::table('jurnal')->insert([
+            'transaksi_id' => $data_pgpenjualan->id,
+            'id_perusahaan' => 1, //bisa diganti kalau sudah live
+            'kode_akun' => '111',
+            'tgl_jurnal' => now(),
+            'posisi_d_c' => 'd',
+            'nominal' => $data_penjualan->total_harga,
+            'kelompok' => 1,
+            'transaksi' => 'penjualan',
+        ]);
+
+        DB::table('jurnal')->insert([
+            'transaksi_id' => $data_pgpenjualan->id,
+            'id_perusahaan' => 1, //bisa diganti kalau sudah live
+            'kode_akun' => '411',
+            'tgl_jurnal' => now(),
+            'posisi_d_c' => 'c',
+            'nominal' => $data_penjualan->total_harga,
+            'kelompok' => 4,
+            'transaksi' => 'penjualan',
+        ]);
+
+        return redirect('midtrans/status');
     }
 }

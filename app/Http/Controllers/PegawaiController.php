@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pegawai;
+use App\Models\Jabatan;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StorePegawaiRequest;
 use App\Http\Requests\UpdatePegawaiRequest;
 
@@ -13,7 +16,7 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $pegawai = Pegawai::all();
+        $pegawai = Pegawai::join('users', 'pegawai.id', '=', 'users.id')->get();
         return view('pegawai.view', compact('pegawai'));
     }
 
@@ -24,7 +27,8 @@ class PegawaiController extends Controller
      */
     public function create()
     {     
-        return view('pegawai/create',['pegawai_id' => Pegawai::getPegawaiId()]);
+        $jabatans = Jabatan::all();
+        return view('pegawai/create',['pegawai_id' => Pegawai::getPegawaiId(), 'jabatans' => $jabatans]);
     }
 
     /**
@@ -36,7 +40,7 @@ class PegawaiController extends Controller
     public function store(StorePegawaiRequest $request)
     {
         //digunakan untuk validasi kemudian kalau ok tidak ada masalah baru disimpan ke db
-        $validated = $request->validate([
+        $pegawai = $request->validate([
             'pegawai_id' => 'required',
             'pegawai_nama' => 'required',
             'pegawai_no_telepon' => 'required',
@@ -45,10 +49,34 @@ class PegawaiController extends Controller
             'pegawai_jabatan' => 'required',
         ]);
 
+        $user = $request->validate([
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed'],
+        ]);
+
         // masukkan ke db
-        Pegawai::create($request->all());
-        
-        return redirect()->route('pegawai.index')->with('success','Data Berhasil di Input');    }
+
+
+        $user = User::create([
+            'name' => $pegawai['pegawai_nama'],
+            'email' => $user['email'],
+            'password' => Hash::make($user['password']),
+            'role' => $pegawai['pegawai_jabatan'],
+        ]);
+
+        Pegawai::create([
+            'pegawai_id' => $pegawai['pegawai_id'],
+            'pegawai_nama' => $pegawai['pegawai_nama'],
+            'pegawai_no_telepon' => $pegawai['pegawai_no_telepon'],
+            'pegawai_alamat' => $pegawai['pegawai_alamat'],
+            'pegawai_jenis_kelamin' => $pegawai['pegawai_jenis_kelamin'],
+            'pegawai_jabatan' => $pegawai['pegawai_jabatan'],
+            'user_id' => $user->id,
+        ]);
+
+
+        return redirect()->route('pegawai.index')->with('success','Data Berhasil di Input');    
+    }
 
     /**
      * Display the specified resource.

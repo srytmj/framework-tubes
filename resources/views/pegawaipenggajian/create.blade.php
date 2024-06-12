@@ -69,7 +69,15 @@
                             </ul>
                         </div>
                     @endif
+
+                    <!-- Display Error jika data sudah ada pada periode yang sama -->
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     <!-- Akhir Display Error -->
+                    
                     <form action="{{ route('pegawaipenggajian.store') }}" method="post">
                         @csrf
 
@@ -160,7 +168,7 @@
                         <input class="col-sm-1 btn btn-success btn-sm" type="submit" value="Simpan">
 
                         <!-- untuk tombol batal simpan -->
-                        <a class="col-sm-1 btn btn-dark  btn-sm" href="{{ url('/pegawai') }}" role="button">Batal</a>
+                        <a class="col-sm-1 btn btn-dark  btn-sm" href="{{ url('/pegawaipenggajian') }}" role="button">Batal</a>
                     </form>
 
                 </div>

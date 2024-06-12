@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Carbon\Carbon;
 
 return new class extends Migration
 {
@@ -41,7 +40,7 @@ return new class extends Migration
                     'updated_at' => now(),
                 ],
                 [
-                    'transaksi_id' => 2,
+                    'transaksi_id' => 1,
                     'id_perusahaan' => 1,
                     'kode_akun' => '411',
                     'tgl_jurnal' => '2024-05-17 00:00:00',

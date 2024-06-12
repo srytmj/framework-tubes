@@ -272,7 +272,7 @@ class PenjualanController extends Controller
         Penjualan::checkout($id_customer); //proses cekout
         $produk = Penjualan::getProduk();
 
-        return redirect('penjualan/status');
+        return redirect('midtrans/bayar');
     }
 
     // invoice

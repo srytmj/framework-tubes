@@ -4,7 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 return new class extends Migration
 {
@@ -23,15 +22,62 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('users')->insert([
-            'name' => 'admin',
-            'email' => 'admin@mail.com',
-            'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('12341234'),
-            'remember_token' => \Illuminate\Support\Str::random(10),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        // DB::table('users')->insert([
+        //     [            
+        //         'name' => 'user1',
+        //         'email' => 'user1@mail.com',
+        //         'email_verified_at' => now(),
+        //         'password' => Hash::make('12341234'),
+        //         'remember_token' => \Illuminate\Support\Str::random(10),
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'user2',
+        //         'email' => 'user2@mail.com',
+        //         'email_verified_at' => now(),
+        //         'password' => Hash::make('12341234'),
+        //         'remember_token' => \Illuminate\Support\Str::random(10),
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'user3',
+        //         'email' => 'user3@mail.com',
+        //         'email_verified_at' => now(),
+        //         'password' => Hash::make('12341234'),
+        //         'remember_token' => \Illuminate\Support\Str::random(10),
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'user4',
+        //         'email' => 'user4@mail.com',
+        //         'email_verified_at' => now(),
+        //         'password' => Hash::make('12341234'),
+        //         'remember_token' => \Illuminate\Support\Str::random(10),
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'user5',
+        //         'email' => 'user5@mail.com',
+        //         'email_verified_at' => now(),
+        //         'password' => Hash::make('12341234'),
+        //         'remember_token' => \Illuminate\Support\Str::random(10),
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'user6',
+        //         'email' => 'user6@mail.com',
+        //         'email_verified_at' => now(),
+        //         'password' => Hash::make('12341234'),
+        //         'remember_token' => \Illuminate\Support\Str::random(10),
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
     }
 
     /**

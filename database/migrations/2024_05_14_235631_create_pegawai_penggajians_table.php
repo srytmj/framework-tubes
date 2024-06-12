@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('pegawai_penggajian_id');
             $table->string('pegawai_id');
             $table->date('periode');
+            $table->integer('jam_kerja');
             $table->integer('gaji');
             $table->timestamps();
         });

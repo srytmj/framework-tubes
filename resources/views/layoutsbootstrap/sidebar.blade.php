@@ -11,8 +11,8 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
-            {{-- <img src="{{asset('images/logos/mukena.png')}}" width="180" alt="" /> --}}
+          <a href="{{ url('') }}" class="text-nowrap logo-img"><br />
+            <img src="{{asset('images/logos/pecellelelogo.jpg')}}" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -51,7 +51,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('jabatan') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-file-description"></i>
+                  <i class="ti ti-clipboard"></i>
                 </span>
                 <span class="hide-menu">Jabatan</span>
               </a>
@@ -59,7 +59,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('pegawai') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-file-description"></i>
+                  <i class="ti ti-user"></i>
                 </span>
                 <span class="hide-menu">Pegawai</span>
               </a>
@@ -70,7 +70,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('bahanbaku') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-typography"></i>
+                  <i class="ti ti-diamond"></i>
                 </span>
                 <span class="hide-menu">Bahan Baku</span>
               </a>
@@ -78,7 +78,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('distributor') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-layout"></i>
+                  <i class="ti ti-map-pins"></i>
                 </span>
                 <span class="hide-menu">Distributor</span>
               </a>
@@ -86,7 +86,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('produk') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-typography"></i>
+                  <i class="ti ti-fish"></i>
                 </span>
                 <span class="hide-menu">Produk</span>
               </a>
@@ -102,7 +102,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('bahanbakupembelian') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-typography"></i>
+                  <i class="ti ti-building"></i>
                 </span>
                 <span class="hide-menu">Pembelian Bahan Baku</span>
               </a>
@@ -110,7 +110,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('produksi') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-typography"></i>
+                  <i class="ti ti-clock-play"></i>
                 </span>
                 <span class="hide-menu">Produksi</span>
               </a>
@@ -121,7 +121,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('pegawaipenggajian') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-typography"></i>
+                  <i class="ti ti-premium-rights"></i>
                 </span>
                 <span class="hide-menu">Penggajian</span>
               </a>
@@ -181,7 +181,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('midtrans/bayar') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-credit-card"></i>
+                  <i class="ti ti-user-check"></i>
                 </span>
                 <span class="hide-menu">Pembayaran</span>
               </a>
@@ -190,7 +190,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('pembayaran/viewstatusPG') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-credit-card"></i>
+                  <i class="ti ti-checkup-list"></i>
                 </span>
                 <span class="hide-menu">Status Penjualan</span>
               </a>
@@ -227,7 +227,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('grafik/viewPenjualanBlnBerjalan') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-dashboard"></i>
+                  <i class="ti ti-building-store"></i>
                 </span>
                 <span class="hide-menu">Penjualan</span>
               </a>
@@ -235,7 +235,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('grafik/viewJmlPenjualan') }}" aria-expanded="false">
                 <span>
-                  <i class="ti ti-aperture"></i>
+                  <i class="ti ti-packages"></i>
                 </span>
                 <span class="hide-menu">Barang</span>
               </a>

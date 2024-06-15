@@ -111,7 +111,7 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>Jumlah Barang</td>
+                                                                        <td>Jumlah Produk</td>
                                                                         <td>=</td>
                                                                         <td class="text-end">
                                                                             {{ number_format($k->produk_qty) }}</td>

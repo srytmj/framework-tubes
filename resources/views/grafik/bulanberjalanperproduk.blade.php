@@ -61,7 +61,7 @@
 
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Grafik Penjualan Barang Bulan Berjalan</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Grafik Penjualan Produk Bulan Berjalan</h6>
 
                         </div>
 
@@ -173,7 +173,7 @@
                 },
                 yaxis: {
                     title: {
-                        text: 'Jml Penjualan Barang'
+                        text: 'Jml Penjualan Produk'
                     }
                 },
                 fill: {

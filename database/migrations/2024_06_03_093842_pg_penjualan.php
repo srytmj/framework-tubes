@@ -37,30 +37,6 @@ return new class extends Migration
             $table->string('card_type', 100)->nullable();
             $table->timestamps();
         });
-
-        DB::table('pg_penjualan')->insert([
-            'id_penjualan' => 7,
-            'masked_card' => null,
-            'approval_code' => null,
-            'bank' => null,
-            'eci' => null,
-            'channel_response_code' => null,
-            'channel_response_message' => null,
-            'transaction_time' => '2024-03-31 13:22:11',
-            'gross_amount' => '216000.00',
-            'currency' => null,
-            'order_id' => '1066873484',
-            'payment_type' => 'bank_transfer',
-            'signature_key' => null,
-            'status_code' => '200',
-            'transaction_id' => 'ae503fab-1fa1-456a-8088-1d68b9ae0b96',
-            'transaction_status' => 'settlement',
-            'fraud_status' => null,
-            'settlement_time' => '2024-03-31 13:23:48',
-            'status_message' => 'Success, transaction is found',
-            'merchant_id' => 'G983754056',
-            'card_type' => null
-        ]);
     }
 
     /**

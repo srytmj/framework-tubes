@@ -19,16 +19,6 @@ return new class extends Migration
             $table->integer('jumlah');
             $table->timestamps();
         });
-
-        DB::table('produk_detail')->insert([
-            [
-                'produk_kode' => 'PR001',
-                'bahanbaku_kode' => 'BB013',
-                'jumlah' => '1',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]
-        ]);
     }
 
     /**

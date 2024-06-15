@@ -19,15 +19,6 @@ return new class extends Migration
             $table->string('status')->default('unconfirmed');
             $table->timestamps(0);
         });
-
-        DB::table('bahanbaku_pembelian')->insert([
-            [
-                'bahanbaku_pembelian_kode' => 'BBP001',
-                'distributor_kode' => 'DS004',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]
-        ]);
     }
 
     /**

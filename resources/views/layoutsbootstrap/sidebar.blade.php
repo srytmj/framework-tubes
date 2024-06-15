@@ -221,7 +221,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/api/berita" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('api/berita') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-api-app"></i>
                 </span>
@@ -229,7 +229,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/api/berita1" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('api/berita1') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-api-app"></i>
                 </span>
@@ -255,15 +255,15 @@
                 <span>
                   <i class="ti ti-packages"></i>
                 </span>
-                <span class="hide-menu">Barang</span>
+                <span class="hide-menu">Produk</span>
               </a>
             </li>
             {{-- <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ url('grafik/viewJmlBarangTerjual') }}" aria-expanded="false">
+              <a class="sidebar-link" href="{{ url('grafik/viewJmlProdukTerjual') }}" aria-expanded="false">
                 <span>
                   <i class="ti ti-package"></i>
                 </span>
-                <span class="hide-menu">Barang Per Bulan</span>
+                <span class="hide-menu">Produk Per Bulan</span>
               </a>
             </li> --}}
 

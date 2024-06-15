@@ -24,29 +24,6 @@ return new class extends Migration
             $table->string('status');
             $table->string('deskripsi');
         });
-
-        DB::table('status_pemesanan')->insert([
-            [
-                'status' => 'pesan',
-                'deskripsi' => 'Pemesanan Produk',
-            ],
-            [
-                'status' => 'siap_bayar',
-                'deskripsi' => 'Checkout',
-            ],
-            [
-                'status' => 'konfirmasi_bayar',
-                'deskripsi' => 'Konfirmasi Pembayaran',
-            ],
-            [
-                'status' => 'selesai',
-                'deskripsi' => 'Pesanan Selesai',
-            ],
-            [
-                'status' => 'expired',
-                'deskripsi' => 'Pesanan Expired',
-            ]
-        ]);
     }
 
     /**

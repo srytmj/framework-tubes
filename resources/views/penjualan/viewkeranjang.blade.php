@@ -85,7 +85,7 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>No</th>
-                                            <th>Barang</th>
+                                            <th>Produk</th>
                                             <th>Harga</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -93,7 +93,7 @@
                                     <tfoot class="thead-dark">
                                         <tr>
                                             <th>No</th>
-                                            <th>Barang</th>
+                                            <th>Produk</th>
                                             <th>Harga</th>
                                             <th>Aksi</th>
                                         </tr>

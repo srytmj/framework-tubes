@@ -126,7 +126,7 @@
 
                         </div>
                         <a class="btn btn-success" href="{{ url('/produk/detail/create', $produkId) }}" role="button">Tambah Bahan Baku</a>
-                        <a class="btn btn-dark" href="" role="button">Kembali</a>
+                        <a class="btn btn-dark" href="{{ url('produk/') }}" role="button">Kembali</a>
                     </div>
                 </form>
                 <!-- Akhir Dari Input Form -->

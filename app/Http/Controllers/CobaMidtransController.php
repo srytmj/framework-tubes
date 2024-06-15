@@ -240,11 +240,11 @@ class CobaMidtransController extends Controller
 
         // query dapatkan nilai nominal transaksi
         $data_penjualan = DB::table('penjualan')->where('id', $id_penjualan)->first();
-        $data_pgpenjualan = DB::table('pg_penjualan')->where('id', $id_penjualan)->first();
+        // $data_pgpenjualan = DB::table('pg_penjualan')->where('id', $id_penjualan)->first();
 
         //catat ke jurnal
         DB::table('jurnal')->insert([
-            'transaksi_id' => $data_pgpenjualan->id,
+            'transaksi_id' => $data_penjualan->id,
             'id_perusahaan' => 1, //bisa diganti kalau sudah live
             'kode_akun' => '111',
             'tgl_jurnal' => now(),
@@ -255,7 +255,7 @@ class CobaMidtransController extends Controller
         ]);
 
         DB::table('jurnal')->insert([
-            'transaksi_id' => $data_pgpenjualan->id,
+            'transaksi_id' => $data_penjualan->id,
             'id_perusahaan' => 1, //bisa diganti kalau sudah live
             'kode_akun' => '411',
             'tgl_jurnal' => now(),

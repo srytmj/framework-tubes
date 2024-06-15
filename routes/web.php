@@ -17,6 +17,8 @@ use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\JurnalController;
+use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\AuthController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -78,8 +80,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('pegawaipenggajian', [PegawaiPenggajianController::class, 'index']);
         Route::get('/pegawaipenggajian/destroy/{id}', [PegawaiPenggajianController::class,'destroy']);
         Route::resource('/pegawaipenggajian', PegawaiPenggajianController::class);
-
-
     });
 
     Route::group(['middleware' => ['role:admin|manajer|petugas_gudang']], function () {
@@ -109,12 +109,12 @@ Route::middleware(['auth'])->group(function () {
 
         // Route untuk produkdetail
         Route::get('/produk/detail', [ProdukDetailController::class, 'index'])->name('produkdetail.index');
-        Route::get('/produk/detail/create', [ProdukDetailController::class, 'create'])->name('produkdetail.create');
+        Route::get('/produk/detail/create/{id}', [ProdukDetailController::class, 'create'])->name('produkdetail.create');
         Route::post('/produk/detail/id', [ProdukDetailController::class, 'store'])->name('produkdetail.store');
         Route::get('/produk/detail/{id}', [ProdukDetailController::class, 'show'])->name('produkdetail.show');
         Route::get('/produk/detail/{id}/edit', [ProdukDetailController::class, 'edit'])->name('produkdetail.edit');
         Route::put('/produk/detail/{id}', [ProdukDetailController::class, 'update'])->name('produkdetail.update');
-        Route::delete('/produk/detail/{id}', [ProdukDetailController::class, 'destroy'])->name('produkdetail.destroy');
+        Route::get('/produk/detail/destroy/{id}', [ProdukDetailController::class, 'destroy'])->name('produkdetail.destroy');
         Route::resource('produk/detail', ProdukDetailController::class);
 
         // Route untuk produksi & detail
@@ -174,6 +174,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('jurnal/viewdatajurnalumum/{periode}', [App\Http\Controllers\JurnalController::class,'viewdatajurnalumum']);
     Route::get('jurnal/bukubesar', [App\Http\Controllers\JurnalController::class,'bukubesar']);
     Route::get('jurnal/viewdatabukubesar/{periode}/{akun}', [App\Http\Controllers\JurnalController::class,'viewdatabukubesar']);
+
+    Route::get('api/berita', [ApiController::class,'berita']);
+    Route::get('api/berita1', [ApiController::class,'berita1']);
+    Route::get('api/me', [AuthController::class,'me']);
+    Route::get('api/produk', [ApiController::class,'index']);
 });
 
 require __DIR__.'/auth.php';

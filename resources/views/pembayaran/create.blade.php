@@ -106,7 +106,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                    Jumlah Barang
+                                                    Jumlah Produk
                                                     </td>
                                                     <td>=</td>
                                                     <td style="text-align:right">{{number_format($k->produk_qty)}}</td>

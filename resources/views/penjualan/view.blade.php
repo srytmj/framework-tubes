@@ -84,7 +84,7 @@
                             <span class="text">Lihat Keranjang</span>
                     </a>
                 </div>
-                    <!-- List Data Barang yang dijual -->
+                    <!-- List Data Produk yang dijual -->
                     @foreach ($produk as $p)
                         <div class="col-lg-6">
 

@@ -72,13 +72,15 @@
                     <!-- Akhir Display Error -->
 
                     <!-- Awal Dari Input Form -->
-                    <form action="{{ route('bahanbaku.update', $bahanbaku->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('bahanbaku.update', $bahanbaku->id) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <fieldset disabled>
                             <div class="mb-3"><label for="kodebahanbakulabel">Kode bahanbaku</label>
                                 <input class="form-control form-control-solid" id="bahanbaku_kode_tampil"
-                                    name="bahanbaku_kode_tampil" type="text" value="{{ $bahanbaku->bahanbaku_kode }}" readonly>
+                                    name="bahanbaku_kode_tampil" type="text" value="{{ $bahanbaku->bahanbaku_kode }}"
+                                    readonly>
                             </div>
                         </fieldset>
                         <input type="hidden" id="bahanbaku_kode" name="bahanbaku_kode" jenis="bahanbaku_jenis"
@@ -88,17 +90,43 @@
                             <input class="form-control form-control-solid" id="bahanbaku_nama" name="bahanbaku_nama"
                                 type="text" placeholder="Contoh: ayam goreng" value="{{ $bahanbaku->bahanbaku_nama }}">
                         </div>
+                        <div class="mb-3">
+                            <label for="jenisbahanbakulabel">Jenis bahanbaku</label>
+                            <select class="form-control form-control-solid" id="bahanbaku_jenis" name="bahanbaku_jenis">
+                                <option value="Daging/ Jeroan"
+                                    {{ old('bahanbaku_jenis') == 'Daging/ Jeroan' ? 'selected' : '' }}>Daging/ Jeroan
+                                </option>
+                                <option value="Protein Nabati"
+                                    {{ old('bahanbaku_jenis') == 'Protein Nabati' ? 'selected' : '' }}>Protein Nabati
+                                </option>
+                                <option value="Bumbu" {{ old('bahanbaku_jenis') == 'Bumbu' ? 'selected' : '' }}>Bumbu
+                                </option>
+                                <option value="Bahan Pokok"
+                                    {{ old('bahanbaku_jenis') == 'Bahan Pokok' ? 'selected' : '' }}>Bahan Pokok</option>
+                                <option value="Sayur" {{ old('bahanbaku_jenis') == 'Sayur' ? 'selected' : '' }}>Sayur
+                                </option>
+                                <option value="Bahan Pendukung"
+                                    {{ old('bahanbaku_jenis') == 'Bahan Pendukung' ? 'selected' : '' }}>Bahan Pendukung
+                                </option>
+                                <option value="Minuman" {{ old('bahanbaku_jenis') == 'Minuman' ? 'selected' : '' }}>Minuman
+                                </option>
+                            </select>
+                        </div>
 
-                        <label for="jenisbahanbakulabel">Jenis bahanbaku</label>
-                        <select class="form-control form-control-solid" id="bahanbaku_jenis" name="bahanbaku_jenis">
-                            <option value="Daging/ Jeroan" {{ old('bahanbaku_jenis') == 'Daging/ Jeroan' ? 'selected' : '' }}>Daging/ Jeroan</option>
-                            <option value="Protein Nabati" {{ old('bahanbaku_jenis') == 'Protein Nabati' ? 'selected' : '' }}>Protein Nabati</option>
-                            <option value="Bumbu" {{ old('bahanbaku_jenis') == 'Bumbu' ? 'selected' : '' }}>Bumbu</option>
-                            <option value="Bahan Pokok" {{ old('bahanbaku_jenis') == 'Bahan Pokok' ? 'selected' : '' }}>Bahan Pokok</option>
-                            <option value="Sayur" {{ old('bahanbaku_jenis') == 'Sayur' ? 'selected' : '' }}>Sayur</option>
-                            <option value="Bahan Pendukung" {{ old('bahanbaku_jenis') == 'Bahan Pendukung' ? 'selected' : '' }}>Bahan Pendukung</option>
-                            <option value="Minuman" {{ old('bahanbaku_jenis') == 'Minuman' ? 'selected' : '' }}>Minuman</option>
-                        </select>
+
+                        <div class="mb-3">
+                            <label for="jenisbahanbakulabel">Satuan Bahan Baku</label>
+                            <select class="form-control form-control-solid" id="bahanbaku_satuan" name="bahanbaku_satuan">
+                                <option value="kg" {{ old('bahanbaku_satuan') == 'kg' ? 'selected' : '' }}>Kilo Gram
+                                </option>
+                                <option value="gr" {{ old('bahanbaku_satuan') == 'gr' ? 'selected' : '' }}>Gram
+                                </option>
+                                <option value="pcs" {{ old('bahanbaku_satuan') == 'pcs' ? 'selected' : '' }}>Pieces
+                                </option>
+                                <option value="ml" {{ old('bahanbaku_satuan') == 'ml' ? 'selected' : '' }}>Mili Liter
+                                </option>
+                            </select>
+                        </div>
 
                 </div>
 

@@ -47,7 +47,7 @@ class Grafik extends Model
     }
 
     // untuk mendapatkan view grafik jml produk terjual
-    public static function viewJmlBarangTerjual()
+    public static function viewJmlProdukTerjual()
     {
         $sql = "
                 SELECT ax.waktu,

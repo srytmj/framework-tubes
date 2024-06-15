@@ -19,15 +19,6 @@ return new class extends Migration
             $table->string('status')->default('unconfirmed');
             $table->timestamps(0);
         });
-
-        DB::table('produksi')->insert([
-            [
-                'produksi_kode' => 'PRS001',
-                'tanggal_produksi' => '2024-05-01',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]
-        ]);
     }
 
     /**

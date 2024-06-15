@@ -20,17 +20,6 @@ return new class extends Migration
             $table->integer('kuantitas')->default(0);
             $table->timestamps(0);
         });
-
-        // DB::table('bahanbaku_pembelian_detail')->insert([
-        //     [
-        //         'bahanbaku_pembelian_kode' => 'BBP001',
-        //         'bahanbaku_kode' => 'BB016',
-        //         'harga_satuan' => '10000',
-        //         'kuantitas' => '100',
-        //         'created_at' => Carbon::now(),
-        //         'updated_at' => Carbon::now()
-        //     ]
-        // ]);
     }
 
     /**

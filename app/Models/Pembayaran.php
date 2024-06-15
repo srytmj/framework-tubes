@@ -48,7 +48,7 @@ class Pembayaran extends Model
         $sql = "SELECT a.id,a.transaksi_no,DATE_FORMAT(a.tgl_bayar,'%Y-%m-%d') as tgl_bayar,a.tgl_konfirmasi,a.bukti_bayar,
                         a.jenis_pembayaran,a.status,
                         b.total_harga,
-                        GROUP_CONCAT(d.produk_nama ORDER BY d.produk_nama) as list_barang
+                        GROUP_CONCAT(d.produk_nama ORDER BY d.produk_nama) as list_produk
                 FROM pembayaran a
                 LEFT OUTER JOIN penjualan b
                 ON (a.transaksi_no=b.transaksi_no)
@@ -71,7 +71,7 @@ class Pembayaran extends Model
         $sql = "SELECT a.id,a.transaksi_no,a.tgl_bayar,a.tgl_konfirmasi,a.bukti_bayar,
                         a.jenis_pembayaran,a.status,
                         b.total_harga,
-                        GROUP_CONCAT(d.produk_nama ORDER BY d.produk_nama) as list_barang
+                        GROUP_CONCAT(d.produk_nama ORDER BY d.produk_nama) as list_produk
                 FROM pembayaran a
                 LEFT OUTER JOIN penjualan b
                 ON (a.transaksi_no=b.transaksi_no)

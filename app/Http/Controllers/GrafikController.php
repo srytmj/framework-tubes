@@ -29,9 +29,9 @@ class GrafikController extends Controller
     }
 
     // view jml produk terjual
-    public function viewJmlBarangTerjual(){
-        $grafik = Grafik::viewJmlBarangTerjual();
-        return view('grafik.bulanberjalanperbarang',
+    public function viewJmlProdukTerjual(){
+        $grafik = Grafik::viewJmlProdukTerjual();
+        return view('grafik.bulanberjalanperproduk',
                         [
                             'grafik' => $grafik
                         ]

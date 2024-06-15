@@ -34,11 +34,11 @@
               </a>
             </li>
             
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Masterdata</span>
-            </li>
             @role('admin|manajer')
+              <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">Masterdata</span>
+              </li>
              {{-- Masterdata --}}
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('coa') }}" aria-expanded="false">
@@ -66,7 +66,7 @@
             </li>
             @endrole
 
-            @role('admin|manajer|petugas_gudang')
+            @role('admin')
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ url('bahanbaku') }}" aria-expanded="false">
                 <span>
@@ -93,6 +93,7 @@
             </li>
             @endrole
             
+
             @role('admin|manajer|petugas_gudang')
              {{-- Transaksi - Admin --}}
             <li class="nav-small-cap">
@@ -197,6 +198,7 @@
             </li>
             @endrole
 
+            
             {{-- Laporan --}}
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -216,6 +218,22 @@
                   <i class="ti ti-archive"></i>
                 </span>
                 <span class="hide-menu">Buku Besar</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/api/berita" aria-expanded="false">
+                <span>
+                  <i class="ti ti-api-app"></i>
+                </span>
+                <span class="hide-menu">API Berita Produksi</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/api/berita1" aria-expanded="false">
+                <span>
+                  <i class="ti ti-api-app"></i>
+                </span>
+                <span class="hide-menu">API Berita Populasi</span>
               </a>
             </li>
 

@@ -35,6 +35,9 @@ Route::get('/produk/{id}', [ApiController::class, 'show']); // Menampilkan produ
 // Route::delete('/produk/{id}', [ApiController::class, 'destroy']); // Menghapus produk berdasarkan id
 Route::get('/produk/search/{produk}', [ApiController::class, 'search']); // Mencari produk berdasarkan nama
 
+Route::get('/berita', [ApiController::class, 'berita']);
+Route::get('/berita1', [ApiController::class, 'berita1']);
+
 // // Grup route dengan middleware auth:sanctum
 // Route::middleware(['auth:sanctum'])->group(function () {
 //     // Route untuk logout

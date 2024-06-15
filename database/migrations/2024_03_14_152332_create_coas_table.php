@@ -61,9 +61,9 @@ return new class extends Migration
                 'updated_at' => Carbon::now(),
             ],
             [
-                'kode_akun' => '512',
+                'kode_akun' => '121',
                 'nama_akun' => 'Persediaan Bahan Baku',
-                'header_akun' => '5',
+                'header_akun' => '1',
                 'id_perusahaan' => '1',
                 'distributor_kode' => '1',
                 'created_at' => Carbon::now(),

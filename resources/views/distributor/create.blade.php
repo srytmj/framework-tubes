@@ -78,12 +78,12 @@
                     <input type="hidden" id="distributor_kode" name="distributor_kode" value="{{$distributor_kode}}">
 
                     <div class="mb-3"><label for="namadistributorlabel">Nama Distributor</label>
-                    <input class="form-control form-control-solid" id="distributor_nama" name="distributor_nama" type="text" placeholder="Contoh: Toko Mukena Sejuk Menenangkan" value="{{old('distributor_nama')}}">
+                    <input class="form-control form-control-solid" id="distributor_nama" name="distributor_nama" type="text" placeholder="Contoh: Pecel Lele Sejuk Menenangkan" value="{{old('distributor_nama')}}">
                     </div>
                     
         
                     <div class="mb-0"><label for="alamatdistributorlabel">Alamat Distributor</label>
-                        <textarea class="form-control form-control-solid" id="alamat_distributor" name="alamat_distributor" rows="3" placeholder="Cth: Jl Pelajar Pejuan 45">{{old('alamat_distributor')}}</textarea>
+                        <textarea class="form-control form-control-solid" id="distributor_alamat" name="distributor_alamat" rows="3" placeholder="Cth: Jl Pelajar Pejuan 45">{{old('distributor_alamat')}}</textarea>
                     </div>
                     <br>
                     <!-- untuk tombol simpan -->

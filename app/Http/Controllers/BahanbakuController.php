@@ -48,7 +48,7 @@ class bahanbakuController extends Controller
         $request->validate([
             'bahanbaku_kode' => 'required',
             'bahanbaku_nama' => 'required',
-            'harga_bahanbaku' => 'required',
+            // 'harga_bahanbaku' => 'required',
             'bahanbaku_jenis' => 'required',
             'bahanbaku_satuan' => 'required',
         ]);
@@ -56,7 +56,7 @@ class bahanbakuController extends Controller
         $empData = [
             'bahanbaku_kode' => $request->input('bahanbaku_kode'),
             'bahanbaku_nama' => $request->input('bahanbaku_nama'),
-            'harga_bahanbaku' => $request->input('harga_bahanbaku'),
+            // 'harga_bahanbaku' => $request->input('harga_bahanbaku'),
             'bahanbaku_jenis' => $request->input('bahanbaku_jenis'),
             'bahanbaku_satuan' => $request->input('bahanbaku_satuan'),
         ];
@@ -91,7 +91,7 @@ class bahanbakuController extends Controller
         $request->validate([
             'bahanbaku_kode' => 'required',
             'bahanbaku_nama' => 'required',
-            'harga_bahanbaku' => 'required',
+            // 'harga_bahanbaku' => 'required',
             'bahanbaku_jenis' => 'required',
             'bahanbaku_satuan' => 'required',
         ]);
@@ -99,7 +99,7 @@ class bahanbakuController extends Controller
         $empData = [
             'bahanbaku_kode' => $request->input('bahanbaku_kode'),
             'bahanbaku_nama' => $request->input('bahanbaku_nama'),
-            'harga_bahanbaku' => $request->input('harga_bahanbaku'),
+            // 'harga_bahanbaku' => $request->input('harga_bahanbaku'),
             'bahanbaku_jenis' => $request->input('bahanbaku_jenis'),
             'bahanbaku_satuan' => $request->input('bahanbaku_satuan'),
         ];

@@ -99,7 +99,7 @@
                                         <tr>
                                             <td>{{ $p->distributor_kode }}</td>
                                             <td>{{ $p->distributor_nama }}</td>
-                                            <td>{{ $p->alamat_distributor }}</td>
+                                            <td>{{ $p->distributor_alamat }}</td>
                                             <td>
                                                     <a href="{{ route('distributor.edit', $p->id) }}" class="btn btn-success btn-icon-split btn-sm">
                                                         <span class="icon text-white-50">

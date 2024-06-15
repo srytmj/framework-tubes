@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 use App\Models\Produk; // Pastikan model Produk diimpor
 
 class ApiController extends Controller
@@ -18,6 +19,23 @@ class ApiController extends Controller
         return response()->json([
             "message" => "Daftar Produk",
             "data" => Produk::all()
+        ]);
+    }
+
+    public function berita()
+    {
+        $data = Http::get('https://opendata.bandung.go.id/api/bigdata/dinas_ketahanan_pangan_dan_pertanian/jumlah_produksi_daging_di_kota_bandung_2');
+
+        return view('api/view', [
+            'data' => $data['data']
+        ]);
+    }
+    public function berita1()
+    {
+        $data = Http::get('https://opendata.bandung.go.id/api/bigdata/dinas_ketahanan_pangan_dan_pertanian/jumlah_populasi_ternak_di_kota_bandung');
+
+        return view('api/view1', [
+            'data' => $data['data']
         ]);
     }
 

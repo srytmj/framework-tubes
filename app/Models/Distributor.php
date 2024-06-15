@@ -12,7 +12,7 @@ class Distributor extends Model
     use HasFactory;
     protected $table = 'distributor';
     // list kolom yang bisa diisi
-    protected $fillable = ['distributor_kode','distributor_nama','alamat_distributor'];
+    protected $fillable = ['distributor_kode','distributor_nama','distributor_alamat'];
 
     // query nilai max dari kode distributor untuk generate otomatis kode distributor
     public static function getKodeDistributor()

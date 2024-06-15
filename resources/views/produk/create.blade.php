@@ -69,8 +69,8 @@
                 <!-- Akhir Display Error -->
 
                 <!-- Awal Dari Input Form -->
-                <form action="{{ route('produk.store') }}" method="post">
-                    @csrf
+                <form method="POST" action="{{ route('produk.store') }}" enctype="multipart/form-data">
+                  @csrf
                     <fieldset disabled>
                       <div class="mb-3" hidden>
                           <label for="produk_kode_label">Kode Produk</label>

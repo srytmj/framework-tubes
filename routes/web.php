@@ -108,13 +108,14 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/bahanbakupembeliandetail', BahanbakuPembelianDetailController::class);
 
         // Route untuk produkdetail
+        Route::get('/produk/detail', [ProdukDetailController::class, 'index'])->name('produkdetail.index');
+        Route::get('/produk/detail/create', [ProdukDetailController::class, 'create'])->name('produkdetail.create');
+        Route::post('/produk/detail/id', [ProdukDetailController::class, 'store'])->name('produkdetail.store');
         Route::get('/produk/detail/{id}', [ProdukDetailController::class, 'show'])->name('produkdetail.show');
-        Route::get('/produk/detail/create/{id}', [ProdukDetailController::class, 'create'])->name('produkdetail.create');
-        Route::post('/produk/detail/', [ProdukDetailController::class, 'store'])->name('produkdetail.store');
         Route::get('/produk/detail/{id}/edit', [ProdukDetailController::class, 'edit'])->name('produkdetail.edit');
         Route::put('/produk/detail/{id}', [ProdukDetailController::class, 'update'])->name('produkdetail.update');
-        Route::get('/produk/detail/destroy/{id}', [ProdukDetailController::class, 'destroy'])->name('produkdetail.destroy');
-        Route::resource('/produk/detail', ProdukDetailController::class);
+        Route::delete('/produk/detail/{id}', [ProdukDetailController::class, 'destroy'])->name('produkdetail.destroy');
+        Route::resource('produk/detail', ProdukDetailController::class);
 
         // Route untuk produksi & detail
         Route::get('/produksi/detail/{id}', [App\Http\Controllers\ProduksiController::class,'detail']);
